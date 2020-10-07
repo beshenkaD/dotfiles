@@ -1,0 +1,2 @@
+{X.Org/Radeon RX 580 Series (POLARIS10, DRM 3.36.0, 5.5.14, LLVM 9.0.1)/4.5 (Core Profile) Mesa 19.3.5}=SUPPORTED
+{X.Org/Radeon RX 580 Series (POLARIS10, DRM 3.36.0, 5.5.14, LLVM 9.0.1)/4.6 (Core Profile) Mesa 20.0.6}=SUPPORTED

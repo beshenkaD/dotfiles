@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+
+import json
+import requests
+from datetime import datetime
+
+rain_icon        = "歹"
+snow_icon        = "流"
+cloudy_icon      = "杖"
+sunny_icon       = "滛"
+fog_icon         = "敖"
+cloud_icon       = "摒"
+thermometer_icon = ""
+humidity_icon    = "懲"
+
+# =========== Get Info ===========
+result   = requests.get("http://wttr.in/yakutsk/format=j1")
+raw_data = json.loads(result.text)
+
+# =========== Parsing ===========
+weather     = raw_data['current_condition']
+temp        = weather[0]['temp_C']
+humidity    = weather[0]['humidity']
+raw_desc    = weather[0]['weatherDesc']
+description = raw_desc[0]['value']
+
+# =========== Icons ===========
+main_icon = cloud_icon
+
+if description.lower().find("rain") != -1:
+    main_icon = rain_icon
+if description.lower().find("snow") != -1:
+    main_icon = snow_icon
+if description.lower().find("cloudy") != -1:
+    main_icon = cloudy_icon
+if description.lower().find("clear") != -1:
+    main_icon = sunny_icon
+if description.lower().find("fog") != -1:
+    main_icon = fog_icon
+if description.lower().find("smoke") != -1:
+    main_icon = fog_icon
+if description.lower().find("mist") != -1:
+    main_icon = fog_icon
+if description.lower().find("sunny") != -1:
+    main_icon = sunny_icon
+
+# =========== Print ===========
+print(main_icon + ' '
+      + description + ' '
+      + humidity_icon + humidity + "% "
+      + thermometer_icon + temp
+      + '°')
