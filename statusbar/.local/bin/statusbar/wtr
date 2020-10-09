@@ -1,0 +1,5 @@
+#!/bin/sh
+
+loc="Yakutsk"
+wttr="$(curl -s v2.wttr.in/${loc} | grep -e "Weather" | sed 's/C,.*/C/g; s/+//g; s/.*\[0m.//g; s/.//2')"
+echo -ne "^c#FF0000^${wttr}^d^"

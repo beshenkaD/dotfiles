@@ -7,13 +7,19 @@ fi
 
 for folder in $(ls -F | grep /)
 do
-  echo "deleting $folder..."
+  echo "installing $folder..."
 
-  if [ "$(ls $folder)" = "etc" ]
-  then
-        stow -D -t / $folder
+  if [ "$folder" = "NOSTOW/" ]; then
+    cd $folder
+    for f in $(ls -F | grep /); do
+      cd $f
+      echo "deleting $f..."
+      sh delete.sh
+      cd ..
+    done
+    cd ..
   else
         stow -D $folder
   fi
-
 done
+
