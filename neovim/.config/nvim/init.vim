@@ -22,6 +22,7 @@ let mapleader=","
 nnoremap <c-p> :Files<cr>
 
 "============= Indentation =============
+set secure exrc
 
 "tabulation settings
 set tabstop=2
@@ -63,6 +64,8 @@ lua require'nvim_lsp'.clangd.setup{on_attach=require'completion'.on_attach}
 lua require'nvim_lsp'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
 " Haskell
 lua require'nvim_lsp'.hls.setup{on_attach=require'completion'.on_attach}
+" Go
+lua require'nvim_lsp'.gopls.setup{on_attach=require'completion'.on_attach}
 
 " Autocomplete
 

@@ -1,5 +1,7 @@
 set PATH /home/drakkari/.local/bin $PATH
 set PATH /home/drakkari/.local/bin/statusbar $PATH
+set PATH /home/drakkari/go/ $PATH
+set GOPATH /home/drakkari/go
 
 export VISUAL="nvim"
 export EDITOR="nvim"

@@ -9,7 +9,7 @@ if [ $ethstatus = "up" ]; then
     netstatus="^c#B48EAD^ ^d^Ether"
 elif [ $wifistatus = "up" ]; then
     wifiname="$(nmcli -t -f ssid dev wifi)"
-    netstatus="^c#B48EAD^直 ^d^ $wifiname  $wifiperc"
+    netstatus="^c#B48EAD^直 ^d^ $wifissid  $wifiperc"
 else
     netstatus="^c#B48EAD^睊 ^d^Down"
 fi

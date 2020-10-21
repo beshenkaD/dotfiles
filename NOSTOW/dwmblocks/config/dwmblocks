@@ -1,10 +1,11 @@
 static const Block blocks[] = {
 	/*Icon*/ /*Command*/		                       /*Update Interval*/   /*Update Signal*/
 	{"",     "volume",                                          1,          0},
-  {"",     "gentoo_updates",                                  14400,      0},
-  {"",     "net",                                             1,          0},
-	{"",     "time_dwm",			                                  5,		      0},
-  {"",     "date_dwm",                                        60,         0},
+  {"",     "gentoo_updates",                                  1800,       0},
+  {"",     "net",                                             10,         0},
+  {"",     "tor_dwm",                                         30,         0},
+	{"",     "time_dwm",			                                  30,		      0},
+  {"",     "date_dwm",                                        14400,      0},
 };
 
 /* sets delimeter between status commands. NULL character ('\0') means no delimeter. */
