@@ -1,9 +1,0 @@
-#!/bin/sh
-
-isworking="$(rc-service tor status)"
-
-if [ "${isworking}" = " * status: started" ]; then
-  echo "^c#ebcb8b^﨩 ^d^Active"
-else
-  echo "^c#bf616a^﨩 ^d^Down"
-fi

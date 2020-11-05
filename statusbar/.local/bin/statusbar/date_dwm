@@ -1,5 +1,0 @@
-#!/bin/sh
-
-date="$(LC_ALL=C date "+%A %d %B")"
-
-printf "%s\n" "^c#BF616A^ ^d^$date"

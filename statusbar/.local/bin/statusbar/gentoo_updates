@@ -1,5 +1,0 @@
-#!/bin/sh
-
-updatesCount="$(emerge -uDNp --with-bdeps y @system @world | wc -l)"
-
-printf "%s\n" "^c#81a1c1^ ^d^$updatesCount"

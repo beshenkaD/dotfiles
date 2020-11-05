@@ -1,5 +1,0 @@
-#!/bin/sh
-
-time="$(date "+%H:%M")"
-
-printf "%s\n" "^c#A3BE8C^ ^d^$time"

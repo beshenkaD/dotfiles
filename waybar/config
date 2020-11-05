@@ -1,0 +1,167 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 21,
+
+    "modules-left": [
+	    "custom/home", 
+	    "custom/arrow_r1", 
+	    "sway/workspaces", 
+	    "sway/mode", 
+	    "custom/arrow_r2", 
+	    "sway/window"
+    ],
+
+    "modules-center": [],
+    "modules-right": [
+    	    "custom/arrow1",
+ 	    "pulseaudio",
+	    "custom/arrow2",
+	    "network",
+	    "custom/arrow3",
+	    "cpu",
+    	    "custom/arrow4",
+	    "custom/keyboard-layout",
+	    "custom/arrow5",
+	    "custom/weather",
+	    "custom/arrow6",
+	    "clock#date",
+	    "custom/arrow7",
+	    "clock#time",
+	    "custom/arrow8",
+	    "tray"
+    ],
+
+    "custom/home": {
+      "format": "",
+      "tooltip": false
+    },
+
+    "tray": {
+    	"icon-size": 22,
+	"spacing": 5
+    },
+    
+    "custom/keyboard-layout": {
+      "exec": "swaymsg --type get_inputs | grep \"xkb_active_layout_name\" | sed -u '1!d; s/^.*xkb_active_layout_name\": \"//; s/ (US)//; s/\",//' && swaymsg --type subscribe --monitor '[\"input\"]' | sed -u 's/^.*xkb_active_layout_name\": \"//; s/\",.*$//; s/ (US)//'",
+      "format": "  {}",
+      "tooltip": false
+    },
+    
+    "network": {
+        "interval": 5,
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": " {ifname}",
+        "format-disconnected": "Disconnected",
+        "tooltip": false,
+        "on-click": "nmtui"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/weather": {
+    	"exec": "curl 'https://wttr.in/Yakutsk?format=%20+%c+%t+%20'",
+    	"interval": 3600
+    },
+
+    "cpu": {
+        "interval": 5,
+        "tooltip": false,
+        "format": " {usage}%",
+        "states": {
+          "warning": 70,
+          "critical": 90
+        }
+    },
+
+    "sway/window": {
+        "max-length": 50
+    },
+
+    "clock#time": {
+        "interval": 10,
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+
+    "clock#date": {
+        "interval": 20,
+        "format": "{:%e %b %Y}",
+        "tooltip": false
+    },
+
+    "custom/arrow_r1": {
+    	"format": "",
+	"tooltip": false
+    },
+
+    "custom/arrow_r2": {
+    	"format": "",
+	"tooltip": false
+    },
+
+    "custom/arrow1": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow2": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow3": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow4": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow5": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow6": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow7": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow8": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/arrow9": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "custom/thin_arrow1": {
+    	"format": "",
+	"tooltip": false
+    },
+}

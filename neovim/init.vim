@@ -12,6 +12,8 @@ Plug 'tpope/vim-commentary'                     "Very self-explanatory
 Plug 'sheerun/vim-polyglot'                     "Syntax
 Plug 'junegunn/fzf.vim'                         "Fuzzy finder
 Plug 'yggdroot/indentline'                      "Cool indent line
+Plug 'cespare/vim-toml'
+Plug 'maralla/vim-toml-enhance'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
@@ -25,8 +27,8 @@ nnoremap <c-p> :Files<cr>
 set secure exrc
 
 "tabulation settings
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set smarttab
 set expandtab
 set smartindent
@@ -61,9 +63,9 @@ set hidden
 " Clangd
 lua require'nvim_lsp'.clangd.setup{on_attach=require'completion'.on_attach}
 " Rust-analyzer
-lua require'nvim_lsp'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
+"lua require'nvim_lsp'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
 " Haskell
-lua require'nvim_lsp'.hls.setup{on_attach=require'completion'.on_attach}
+"lua require'nvim_lsp'.hls.setup{on_attach=require'completion'.on_attach}
 " Go
 lua require'nvim_lsp'.gopls.setup{on_attach=require'completion'.on_attach}
 

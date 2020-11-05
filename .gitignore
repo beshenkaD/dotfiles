@@ -1,2 +1,2 @@
-neovim/.config/nvim/plugins/
-blender/.config/blender/2.82/scripts/
+neovim/plugins
+blender/2.82/scripts/
