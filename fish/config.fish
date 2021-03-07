@@ -2,6 +2,7 @@ source ~/.profile
 
 # Use trash-cli
 alias rm='echo "This is not the command you are looking for."; false'
+
 # paste
 alias ix="curl -F 'f:1=<-' ix.io"
 
@@ -19,7 +20,7 @@ set TERMINAL alacritty
 set FILE     nnn
 set PAGER    less
 
-set MOZ_ENABLE_WAYLAND 1
-set QT_QPA_PLATFORM    wayland
-set GDK_BACKEND        wayland
-set XDG_SESSION_TYPE   wayland
+# set MOZ_ENABLE_WAYLAND 1
+# set QT_QPA_PLATFORM    wayland
+# set GDK_BACKEND        wayland
+# set XDG_SESSION_TYPE   wayland

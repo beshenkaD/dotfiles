@@ -8,7 +8,7 @@ git clone https://github.com/beshenkaD/sween
 cd sween
 go install
 ```
-**2. Install required profiles :**
+**2. Link required dotfiles :**
 ```shell script
-sween --link --profiles "sway common"
+sween -o link -d "smth"
 ```
