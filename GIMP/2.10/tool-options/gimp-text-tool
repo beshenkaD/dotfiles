@@ -1,0 +1,8 @@
+# GIMP gimp-text-tool options
+
+(foreground (color-rgb 0.1803921568627451 0.20392156862745098 0.25098039215686274))
+(palette "Standard")
+(font "Iosevka Medium")
+(box-mode fixed)
+
+# end of gimp-text-tool options

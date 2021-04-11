@@ -1,0 +1,235 @@
+[colors]
+background     = #2e3440
+background-alt = #3b4252
+foreground     = #d8dee9
+foreground-alt = #4c566a
+
+light = #3b4252
+dark  = #d8dee9
+
+pn1 = #2e3440
+pn2 = #3b4252
+pn3 = #434c5e
+pn4 = #4c566a
+
+ss1 = #d8dee9
+ss2 = #e5e9f0
+ss3 = #eceff4
+
+fr1 = #8fbcbb
+fr2 = #88c0d0
+fr3 = #81a1c1
+fr4 = #5e81ac
+
+au1 = #bf616a
+au2 = #d08770
+au3 = #ebcb8b
+au4 = #a3be8c
+au5 = #b48ead
+
+primary   = #81a1c1
+secondary = #5e81ac
+alert     = #bf616a
+warning   = #d08770
+
+[bar/main]
+width = 100%
+height = 30
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0
+padding-right = 2
+
+border-size = 0
+border-color = ${colors.pn4}
+border-bottom-size = 2
+
+line-size = 3
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "Roboto:pixelsize=10;2"
+font-1 = "Roboto:pixelsize=10:style=medium;2"
+font-2 = "Iosevka Nerd Font:size=14;3"
+
+modules-left = bspwm title
+modules-center = date
+modules-right = pulseaudio keyboard wlan cpu gpu memory eth
+
+tray-position = right
+tray-padding = 1
+tray-background = ${colors.fr4}
+tray-maxsize = 24
+
+wm-restack = bspwm
+#override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/rofi]
+type = custom/script
+exec = echo " 異  Launcher"
+click-left = rofi -show drun -show-icons
+format-underline = ${colors.au2}
+
+[module/title]
+type = internal/xwindow
+format-foreground = ${colors.fr1}
+format-underline = ${colors.fr1}
+format-padding = 4
+
+label-maxlen = 40
+label-empty = Desktop
+
+[module/keyboard]
+type = internal/xkeyboard
+
+bufferlist-0 = num lock
+bufferlist-1 = scroll lock
+
+format = <label-layout> <label-indicator>
+label-layout = %icon%
+
+layout-icon-default = some-icon
+layout-icon-0 = ru;RU
+layout-icon-1 = us;US
+
+label-layout-foreground = ${colors.dark}
+label-layout-underline  = ${colors.au4}
+
+label-indicator-on-capslock =  CL
+label-indicator-on-capslock-foreground = ${colors.warning}
+label-indicator-on-capslock-underline = ${colors.warning}
+
+label-indicator-on-numlock = 
+label-indicator-off-numlock =
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+format = <ramp-load> <label> 
+format-underline = ${colors.fr4} 
+
+ramp-load-font = 2
+ramp-load-0 = CPU
+ramp-load-0-foreground = ${colors.fr1}
+
+ramp-load-1 = CPU
+ramp-load-1-foreground = ${colors.warning}
+
+ramp-load-2 = CPU
+ramp-load-2-foreground = ${colors.au1}
+
+[module/gpu]
+type = custom/script
+exec = cat /sys/class/drm/card0/device/gpu_busy_percent
+format-underline = ${colors.au2}
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+format-underline = ${colors.fr4}
+
+format = <ramp-used> <label> 
+label  = %percentage_used%% 
+
+ramp-used-font = 2
+ramp-used-0 = RAM
+ramp-used-0-foreground = ${colors.fr1}
+ramp-used-1 = RAM
+ramp-used-1-foreground = ${colors.warning}
+ramp-used-2 = RAM
+ramp-used-2-foreground = ${colors.au1}
+
+[module/wlan]
+type = internal/network
+interface = wlp7s0
+interval = 2.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.fr2}
+label-connected = "   %essid% (%signal%%)"
+
+format-disconnected =
+
+ramp-signal-0 =   
+ramp-signal-1 =   
+ramp-signal-2 =   
+ramp-signal-3 =   
+ramp-signal-4 =   
+ramp-signal-foreground = ${colors.fr1}
+
+[module/eth]
+type = internal/network
+interface = enp9s0
+interval = 3.0
+
+format-connected-underline = ${colors.fr2}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %B %e, %H:%M
+
+format = <label>
+label-font = 2
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume>   <label-volume>
+format-volume-underline = ${colors.au5}
+
+label-muted = ﱝ   MUTED
+label-muted-foreground = ${colors.warning}
+label-muted-underline = ${colors.warning}
+
+ramp-volume-0 =  
+ramp-volume-1 =  
+ramp-volume-2 =  
+
+ramp-volume-foreground = ${colors.au4}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

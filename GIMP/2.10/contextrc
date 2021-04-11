@@ -1,0 +1,15 @@
+# GIMP user context
+
+(tool "gimp-bucket-fill-tool")
+(paint-info "gimp-paintbrush")
+(foreground (color-rgb 0.1803921568627451 0.20392156862745098 0.25098039215686274))
+(brush "2. Star")
+(dynamics "Dynamics Off")
+(mybrush "100% Opaque")
+(pattern "Clipboard Image")
+(gradient "Custom")
+(palette "Standard")
+(font "Iosevka Medium")
+(tool-preset "Core Pointer")
+
+# end of user context

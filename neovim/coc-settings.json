@@ -1,0 +1,15 @@
+{
+"languageserver": {
+    "d": {
+      "command": "/home/beshenka/.dub/packages/.bin/dls-latest/dls",
+      "args": ["--stdio"],
+      "filetypes": ["d"],
+      "trace.server": "off",
+      "rootPatterns": ["dub.json", "dub.sdl", "dscanner.ini", "dub.selections.json", ".gitmodules"],
+      "initializationOptions": {
+      },
+      "settings": {
+      }
+    }
+  }
+}

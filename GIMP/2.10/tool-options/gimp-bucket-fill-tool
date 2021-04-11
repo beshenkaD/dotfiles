@@ -1,0 +1,9 @@
+# GIMP gimp-bucket-fill-tool options
+
+(foreground (color-rgb 0.1803921568627451 0.20392156862745098 0.25098039215686274))
+(pattern "Clipboard Image")
+(brush-size 51)
+(brush-hardness 0.5)
+(threshold 41.200000000000003)
+
+# end of gimp-bucket-fill-tool options

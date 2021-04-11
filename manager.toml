@@ -55,3 +55,23 @@ user = "beshenka"
 [dotfiles.sxhkd]
     source = "sxhkd"
     target = "~/.config/sxhkd/"
+
+[dotfiles.GIMP]
+    source = "GIMP"
+    target = "~/.config/GIMP"
+
+[dotfiles.Xresources]
+    source = "Xresources"
+    target = "~/.Xresources"
+
+[dotfiles.dir_colors]
+    source = "dir_colors"
+    target = "~/.dir_colors"
+
+[dotfiles.zsh]
+    source = "zsh"
+    target = "~/.zshrc"
+
+[dotfiles.zsh_plugins]
+    source = "zsh_plugins"
+    target = "~/.zsh_plugins"

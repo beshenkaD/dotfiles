@@ -49,13 +49,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "It's from airline
+" let g:airline_theme='nord'
 let g:airline_theme='nord'
 
 "Syntax 
 
 "Colorscheme
 syntax on
-set background=light
+set background=dark
 colorscheme nord
 
 "============= Neovim LSP =============

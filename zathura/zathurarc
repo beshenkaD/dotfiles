@@ -31,3 +31,4 @@ set recolor-darkcolor           "#ECEFF4"
 set recolor                     true
 
 set selection-clipboard clipboard
+set smooth-scroll "true"
