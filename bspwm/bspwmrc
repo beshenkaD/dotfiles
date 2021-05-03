@@ -7,14 +7,14 @@ start() {
 }
 
 start dunst
-start picom -b
-start xautolock -time 10 -locker '$HOME/.local/bin/bspwmscreenlock'
-start polybar main
+start picom -b --experimental-backends
+start xautolock -time 10 -locker '$HOME/.local/bin/lock.sh'
 start sxhkd
 start flameshot
 start redshift-gtk
-hsetroot -full ~/Pictures/wallpapers/nord_logo.png 
-xrdb ~/.Xresources
+
+~/.local/bin/switchtheme.sh d
+start ~/.local/bin/changewallpaper.sh d &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 

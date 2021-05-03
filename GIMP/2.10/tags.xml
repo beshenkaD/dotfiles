@@ -1357,6 +1357,54 @@
   <resource identifier="${gimp_data_dir}/palettes/Web.gpl" checksum="f02e8dfa23d01d6acfbab7f895c2dd16">
   </resource>
 
+  <resource identifier="Adobe Courier" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Courier Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Courier Bold Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Courier Medium Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Helvetica" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Helvetica Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Helvetica Bold Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Helvetica Medium Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe New Century Schoolbook" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe New Century Schoolbook Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe New Century Schoolbook Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe New Century Schoolbook Medium Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Times" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Times Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Times Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Adobe Times Medium Italic" checksum="(null)">
+  </resource>
+
   <resource identifier="Century Schoolbook L Bold" checksum="(null)">
   </resource>
 
@@ -1406,6 +1454,48 @@
   </resource>
 
   <resource identifier="Dingbats" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Sans" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Sans Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Sans Mono" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Serif" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Serif Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Serif Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Droid Serif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="ethio12-uni.pcf" checksum="(null)">
+  </resource>
+
+  <resource identifier="ethio16f-uni.pcf" checksum="(null)">
+  </resource>
+
+  <resource identifier="ethio24f-uni.pcf" checksum="(null)">
+  </resource>
+
+  <resource identifier="ETL Fixed" checksum="(null)">
+  </resource>
+
+  <resource identifier="ETL fixed Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="ETL fixed Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="ETL fixed Medium Italic" checksum="(null)">
   </resource>
 
   <resource identifier="FiraCode Nerd Font" checksum="(null)">
@@ -1876,6 +1966,12 @@
   <resource identifier="Iosevka Ultra-Light Oblique" checksum="(null)">
   </resource>
 
+  <resource identifier="j83-32.pcf" checksum="(null)">
+  </resource>
+
+  <resource identifier="j83-48.pcf" checksum="(null)">
+  </resource>
+
   <resource identifier="JetBrainsMonoExtraBold Nerd Font Mono Ultra-Bold" checksum="(null)">
   </resource>
 
@@ -2128,6 +2224,45 @@
   <resource identifier="LiterationSerif NF Italic" checksum="(null)">
   </resource>
 
+  <resource identifier="Lohit Assamese" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Bengali" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Devanagari" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Gujarati" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Gurmukhi" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Kannada" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Malayalam" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Marathi" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Nepali" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Odia" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Tamil" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Tamil Classical" checksum="(null)">
+  </resource>
+
+  <resource identifier="Lohit Telugu" checksum="(null)">
+  </resource>
+
   <resource identifier="Misc Fixed" checksum="(null)">
   </resource>
 
@@ -2329,6 +2464,9 @@
   <resource identifier="Standard Symbols L" checksum="(null)">
   </resource>
 
+  <resource identifier="taipei24.pcf" checksum="(null)">
+  </resource>
+
   <resource identifier="URW Bookman L" checksum="(null)">
   </resource>
 
@@ -2366,6 +2504,9 @@
   </resource>
 
   <resource identifier="URW Palladio L Medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="xtis24.pcf" checksum="(null)">
   </resource>
 
   <resource identifier="${gimp_data_dir}/tool-presets/Crop/16_10.gtp" checksum="(null)">

@@ -64,10 +64,6 @@ user = "beshenka"
     source = "Xresources"
     target = "~/.Xresources"
 
-[dotfiles.dir_colors]
-    source = "dir_colors"
-    target = "~/.dir_colors"
-
 [dotfiles.zsh]
     source = "zsh"
     target = "~/.zshrc"
@@ -75,3 +71,19 @@ user = "beshenka"
 [dotfiles.zsh_plugins]
     source = "zsh_plugins"
     target = "~/.zsh_plugins"
+
+[dotfiles.dir_colors]
+    source = "dir_colors"
+    target = "~/.dir_colors"
+
+[dotfiles.cmus]
+    source = "cmus"
+    target = "~/.config/cmus"
+
+[dotfiles.xsettingsd]
+    source = "xsettingsd"
+    target = "~/.config/xsettingsd"
+
+[dotfiles.bin]
+    source = "bin"
+    target = "~/.local/bin"

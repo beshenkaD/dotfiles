@@ -1,15 +1,21 @@
-alias -g ls="ls --color=auto"
+if command -v lsd &> /dev/null; then
+    alias -g ls="lsd"
+else
+    alias -g ls="ls --color=auto"
+fi
+
 alias -g cp="cp -iv"
 alias -g mv="mv -iv"
 alias -g ix="curl -F 'f:1=<-' ix.io"
 alias -g password="< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-12};echo;"
-alias -g neofetch='neofetch --size 250px --sixel Pictures/neofetch.png'
 
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 export PATH=/home/$USER/.local/bin:$PATH
 export PATH=/home/$USER/go/bin:$PATH
 export PATH=/home/$USER/Documents/Appimages:$PATH
+
+export EDITOR=nvim
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -34,7 +40,7 @@ setopt autocd
 # PROMT_ICON='  '
 # PROMT_ICON='ᛋᛋ'
 PROMT_ICON='ᛟ'
-PROMPT="%(?.%F{blue} $(tput bold)${PROMT_ICON}.%F{red}?%?)%f %B%F{240}%1~%f%b %# "
+PROMPT="%(?.%F{blue} %B${PROMT_ICON}.%F{red}?%?)%f %B%F{240}%1~%f%b %# "
 
 # Git integration
 autoload -Uz vcs_info
