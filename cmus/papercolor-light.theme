@@ -1,0 +1,55 @@
+#    ▄████▄   ███▄ ▄███▓ █    ██   ██████
+#   ▒██▀ ▀█  ▓██▒▀█▀ ██▒ ██  ▓██▒▒██    ▒
+#   ▒▓█    ▄ ▓██    ▓██░▓██  ▒██░░ ▓██▄
+#   ▒▓▓▄ ▄██▒▒██    ▒██ ▓▓█  ░██░  ▒   ██▒
+#   ▒ ▓███▀ ░▒██▒   ░██▒▒▒█████▓ ▒██████▒▒
+#   ░ ░▒ ▒  ░░ ▒░   ░  ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░
+#     ░  ▒   ░  ░      ░░░▒░ ░ ░ ░ ░▒  ░ ░
+#   ░        ░      ░    ░░░ ░ ░ ░  ░  ░
+#   ░ ░             ░      ░           ░
+#   ░
+#
+# Author: ch1r0x <ch1r0x@mailbox.org>
+
+# --[Papercolor Light]----------------------------------------------
+
+# bottom command line
+set color_cmdline_bg=255
+set color_cmdline_fg=238
+
+# partials
+set color_error=160
+set color_info=238
+set color_separator=8
+
+# bottom status bar
+set color_statusline_bg=24
+set color_statusline_fg=255
+
+# bottom status with currently displayed track
+set color_titleline_bg=31
+set color_titleline_fg=8
+
+# center/main window
+set color_win_fg=238
+set color_win_bg=255
+set color_win_dir=233
+set color_win_cur=162
+set color_win_cur_sel_bg=254
+set color_win_cur_sel_fg=162
+
+# selected
+set color_win_sel_bg=9
+set color_win_sel_fg=254
+
+# inactive current selected (currently playing)
+set color_win_inactive_cur_sel_bg=31
+set color_win_inactive_cur_sel_fg=15
+
+# inactive selected (active album)
+set color_win_inactive_sel_bg=255
+set color_win_inactive_sel_fg=15
+
+# top player bar
+set color_win_title_bg=24
+set color_win_title_fg=255
