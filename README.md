@@ -1,6 +1,12 @@
 # Dotfiles
 My gentoo dotfiles.
 
+# Screenshots
+![Dark](/_screenshots/dark.png)
+![Dark 2](/_screenshots/dark2.png)
+![Light](/_screenshots/light.png)
+![Light 2](/_screenshots/light2.png)
+
 # Installation
 **1. Install sween :**
 ```shell script
