@@ -47,8 +47,8 @@ set relativenumber
 "Colorscheme
 set termguicolors
 syntax on
-set background=dark
-colorscheme gruvbox
+set background=light
+colorscheme PaperColor
 
 "Airline Setup
 let g:airline#extensions#tabline#enabled = 1

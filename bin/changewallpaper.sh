@@ -1,7 +1,14 @@
 #!/bin/sh
 
 while true; do
-    hsetroot -fill ~/Pictures/wallpapers/$(ls Pictures/wallpapers | shuf -n 1)
+    theme=$(cat ~/.config/xsettingsd/xsettingsd.conf)
+    if echo "$theme" | grep 'dark'; then
+        pic=$(ls Pictures/wallpapers/*dark* | shuf -n 1)
+    else
+        pic=$(ls Pictures/wallpapers/*light* | shuf -n 1)
+    fi
+
+    hsetroot -center $pic
 
     if [ "$1" = "d" ]; then
         notify-send "Wallpaper has changed"

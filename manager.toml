@@ -87,3 +87,7 @@ user = "beshenka"
 [dotfiles.bin]
     source = "bin"
     target = "~/.local/bin"
+
+[dotfiles.init]
+    source = "init"
+    target = "~/.config/emacs/init.el"

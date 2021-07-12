@@ -11,8 +11,8 @@
     (size 640 480))
 (session-info "toplevel"
     (factory-entry "gimp-single-image-window")
-    (position 4 558)
-    (size 952 516)
+    (position 0 30)
+    (size 1920 1050)
     (open-on-exit)
     (aux-info
         (left-docks-width "44")
@@ -23,18 +23,18 @@
     (gimp-dock
         (side right)
         (book
-            (current-page 1)
-            (dockable "gimp-undo-history"
+            (current-page 0)
+            (dockable "gimp-tool-options"
                 (tab-style automatic)
                 (aux-info
                     (show-button-bar "true")))
-            (dockable "gimp-tool-options"
+            (dockable "gimp-undo-history"
                 (tab-style automatic)
                 (aux-info
                     (show-button-bar "true")))))
     (gimp-dock
         (side right)
-        (position 203)
+        (position 225)
         (book
             (current-page 0)
             (dockable "gimp-color-editor"
@@ -46,14 +46,14 @@
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 382)
+            (position 471)
             (current-page 0)
             (dockable "gimp-document-list"
                 (tab-style automatic)
                 (aux-info
                     (show-button-bar "true"))))
         (book
-            (position 524)
+            (position 645)
             (current-page 0)
             (dockable "gimp-layer-list"
                 (tab-style automatic)
@@ -95,6 +95,13 @@
     (factory-entry "gimp-file-save-dialog")
     (position 558 192)
     (size 801 694))
+(session-info "toplevel"
+    (factory-entry "gimp-unified-transform-tool-dialog")
+    (position 0 0))
+(session-info "toplevel"
+    (factory-entry "gimp-action-search-dialog")
+    (position 873 269)
+    (size 172 540))
 
 (hide-docks no)
 (single-window-mode yes)

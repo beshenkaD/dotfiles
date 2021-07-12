@@ -4,7 +4,7 @@
 
 (GimpToolGroup "tool group"
     (visible yes)
-    (active-tool "gimp-align-tool")
+    (active-tool "gimp-move-tool")
     (children
         (GimpToolInfo "gimp-move-tool"
             (icon-name "gimp-tool-move")
@@ -14,7 +14,7 @@
             (visible yes))))
 (GimpToolGroup "tool group"
     (visible yes)
-    (active-tool "gimp-rect-select-tool")
+    (active-tool "gimp-ellipse-select-tool")
     (children
         (GimpToolInfo "gimp-rect-select-tool"
             (icon-name "gimp-tool-rect-select")
@@ -24,7 +24,7 @@
             (visible yes))))
 (GimpToolGroup "tool group"
     (visible no)
-    (active-tool "gimp-iscissors-tool")
+    (active-tool "gimp-free-select-tool")
     (children
         (GimpToolInfo "gimp-free-select-tool"
             (icon-name "gimp-tool-free-select")
@@ -50,7 +50,7 @@
     (visible yes))
 (GimpToolGroup "tool group"
     (visible yes)
-    (active-tool "gimp-scale-tool")
+    (active-tool "gimp-unified-transform-tool")
     (children
         (GimpToolInfo "gimp-unified-transform-tool"
             (icon-name "gimp-tool-unified-transform")
@@ -98,7 +98,7 @@
             (visible yes))))
 (GimpToolGroup "tool group"
     (visible yes)
-    (active-tool "gimp-paintbrush-tool")
+    (active-tool "gimp-pencil-tool")
     (children
         (GimpToolInfo "gimp-paintbrush-tool"
             (icon-name "gimp-tool-paintbrush")

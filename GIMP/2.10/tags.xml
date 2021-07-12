@@ -1234,7 +1234,7 @@
   <resource identifier="${gimp_data_dir}/gradients/Yellow_Orange.ggr" checksum="428584726006e23e260baa2a7d79f295">
   </resource>
 
-  <resource identifier="gimp-palette-color-history" checksum="82e84f0ba068dbdcdcef6e2578317f60">
+  <resource identifier="gimp-palette-color-history" checksum="51cd96b02b76624f0494f19122954981">
   </resource>
 
   <resource identifier="${gimp_data_dir}/palettes/Bears.gpl" checksum="e82e818c20ac12bdd21049924ea2d1e7">
@@ -1357,52 +1357,7 @@
   <resource identifier="${gimp_data_dir}/palettes/Web.gpl" checksum="f02e8dfa23d01d6acfbab7f895c2dd16">
   </resource>
 
-  <resource identifier="Adobe Courier" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Courier Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Courier Bold Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Courier Medium Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Helvetica" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Helvetica Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Helvetica Bold Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Helvetica Medium Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe New Century Schoolbook" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe New Century Schoolbook Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe New Century Schoolbook Bold Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe New Century Schoolbook Medium Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Times" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Times Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Times Bold Italic" checksum="(null)">
-  </resource>
-
-  <resource identifier="Adobe Times Medium Italic" checksum="(null)">
+  <resource identifier="all-the-icons" checksum="(null)">
   </resource>
 
   <resource identifier="Century Schoolbook L Bold" checksum="(null)">
@@ -1498,6 +1453,9 @@
   <resource identifier="ETL fixed Medium Italic" checksum="(null)">
   </resource>
 
+  <resource identifier="file-icons" checksum="(null)">
+  </resource>
+
   <resource identifier="FiraCode Nerd Font" checksum="(null)">
   </resource>
 
@@ -1543,6 +1501,9 @@
   <resource identifier="FiraCode NF weight=453" checksum="(null)">
   </resource>
 
+  <resource identifier="FontAwesome" checksum="(null)">
+  </resource>
+
   <resource identifier="FuraCode Nerd Font" checksum="(null)">
   </resource>
 
@@ -1586,6 +1547,9 @@
   </resource>
 
   <resource identifier="FuraCode NF weight=453" checksum="(null)">
+  </resource>
+
+  <resource identifier="github-octicons" checksum="(null)">
   </resource>
 
   <resource identifier="Iosevka" checksum="(null)">
@@ -2263,28 +2227,10 @@
   <resource identifier="Lohit Telugu" checksum="(null)">
   </resource>
 
+  <resource identifier="Material Icons" checksum="(null)">
+  </resource>
+
   <resource identifier="Misc Fixed" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Bold" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Bold Semi-Condensed" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Medium Oblique" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Medium Oblique Semi-Condensed" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Medium Semi-Condensed" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Wide Medium" checksum="(null)">
-  </resource>
-
-  <resource identifier="Misc Fixed Wide Medium" checksum="(null)">
   </resource>
 
   <resource identifier="Monospace" checksum="(null)">
@@ -2375,6 +2321,9 @@
   </resource>
 
   <resource identifier="Open Sans Ultra-Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="Quivira" checksum="(null)">
   </resource>
 
   <resource identifier="Roboto" checksum="(null)">
@@ -2504,6 +2453,9 @@
   </resource>
 
   <resource identifier="URW Palladio L Medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="Weather Icons" checksum="(null)">
   </resource>
 
   <resource identifier="xtis24.pcf" checksum="(null)">

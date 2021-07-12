@@ -7,7 +7,7 @@ check_fullscreen() {
 }
 
 if [ "$(check_fullscreen)" != "fullscreen" ]; then
-    i3lock -i $HOME/Pictures/wallpapers/lock.png
+    ~/.local/bin/i3lock-fancy
 else
     exit
 fi

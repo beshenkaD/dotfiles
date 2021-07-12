@@ -140,8 +140,10 @@ set_light() {
 main() {
     if [ "$1" = "l" ]; then
         set_light
+        ~/.local/bin/changewallpaper.sh
     elif [ "$1" = "d" ]; then
         set_dark
+        ~/.local/bin/changewallpaper.sh
     else
         echo "l - light"
         echo "d - dark"

@@ -7,13 +7,19 @@
 # Preferences dialog.
 
 (language "en_US")
+(global-brush no)
+(global-dynamics no)
 (import-raw-plug-in "${gimp_plug_in_dir}/plug-ins/gimp-org-file-raw-placeholder/gimp-org-file-raw-placeholder")
 (monitor-xresolution 102)
 (monitor-yresolution 102)
 (toolbox-wilber no)
 (theme "System")
+(icon-theme "Color")
 (icon-size medium)
 (image-convert-indexed-max-colors 255)
+(image-resize-fill-type background)
+(image-resize-layer-set all)
+(selection-border-radius 2)
 (fill-options
     (style solid)
     (antialias yes)

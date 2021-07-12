@@ -1,9 +1,9 @@
 # GIMP user context
 
-(tool "gimp-paintbrush-tool")
-(paint-info "gimp-paintbrush")
-(foreground (color-rgb 0.98431372549019602 0.94509803921568625 0.7803921568627451))
-(brush "2. Hardness 075")
+(tool "gimp-pencil-tool")
+(paint-info "gimp-pencil")
+(foreground (color-rgb 0.057324840764331197 0.029941992720655137 0.029941992720655137))
+(brush "2. Hardness 100")
 (dynamics "Dynamics Off")
 (mybrush "100% Opaque")
 (pattern "Clipboard Image")
