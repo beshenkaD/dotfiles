@@ -1,7 +1,0 @@
-[redshift]
-temp-day=2500
-temp-night=2500
-
-[manual]
-lat=62.016666
-lon=129.716660
