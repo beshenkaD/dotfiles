@@ -11,6 +11,7 @@ try:
 except:
     hooks = None
 
+
 # ========== Colors ==========
 class colors:
     HEADER = '\033[95m'
@@ -32,10 +33,12 @@ class colors:
         self.FAIL = ''
         self.ENDC = ''
 
+
 def cprint(color, text):
     promt = colors.HEADER + '[dot] ' + colors.ENDC
 
     print(promt + eval(f'colors.{color}') + text + colors.ENDC)
+
 
 # ========== Functions ==========
 def backup(path):
@@ -44,11 +47,12 @@ def backup(path):
 
     if not isdir('./backup'):
         os.mkdir('backup')
-   
+
     try:
         os.replace(path, abspath('./backup') + '/' + basename(path))
     except OSError as e:
         cprint('FAIL', f'{e}')
+
 
 def get_dest(src):
     home = os.getenv('HOME')
@@ -59,6 +63,7 @@ def get_dest(src):
     new = home + '/' + src
 
     return abspath(new)
+
 
 def install(src, dest):
     cprint('GREEN', f'installing {src} to {dest}')
@@ -79,6 +84,7 @@ def install(src, dest):
     except OSError as e:
         cprint('FAIL', f'{e}')
 
+
 def remove(path):
     cprint('GREEN', f'removing {path}')
 
@@ -86,6 +92,7 @@ def remove(path):
         os.unlink(path)
     except OSError as e:
         cprint('FAIL', f'{e}')
+
 
 def show():
     i = []
@@ -133,6 +140,7 @@ def show():
     for dot in n:
         cprint('BLUE', f'[ ] {dot}')
 
+
 def run_hooks(src):
     try:
         command = hooks[src]
@@ -141,6 +149,7 @@ def run_hooks(src):
 
     cprint('GREEN', f'running hooks for {src}')
     os.system(command)
+
 
 # ========== Main ==========
 import argparse

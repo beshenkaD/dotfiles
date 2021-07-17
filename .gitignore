@@ -1,4 +1,5 @@
 .config/nvim/plugins/
+.config/nvim/.netrwhist
 .config/emacs/*
 !.config/emacs/init.el
 *__pycache__
