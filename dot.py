@@ -46,7 +46,7 @@ def backup(path):
         os.mkdir('backup')
    
     try:
-        os.replace(path, abspath('./backup') + '/')
+        os.replace(path, abspath('./backup') + '/' + basename(path))
     except OSError as e:
         cprint('FAIL', f'{e}')
 
