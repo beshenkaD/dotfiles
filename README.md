@@ -8,3 +8,7 @@ SHELL : bash
 NOTIFY: dunst  
 
 # Installation
+
+```shell
+./dot.py --hooks --install .profile .config/{emacs,nvim,whatever}
+```
