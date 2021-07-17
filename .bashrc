@@ -11,6 +11,12 @@ alias cp='cp -i'     # Confirm before overwriting
 alias df='df -h'     # Human-readable sizes
 alias free='free -m' # Sizes in MB
 
+. /etc/os-release
+if [ "$NAME" != "Gentoo Linux" ]; then
+    # In Gentoo i can use eselect-vi
+    alias vi=nvim
+fi
+
 # Git promt
 COLOR_GIT_CLEAN='\[\033[1;30m\]'
 COLOR_GIT_MODIFIED='\[\033[0;33m\]'
