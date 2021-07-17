@@ -1,3 +1,4 @@
+;; ========= Package settings =========
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -7,34 +8,15 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
+(package-install 'use-package)
+
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; ========= Common Settings =========
 (setq make-backup-files nil)
 
-;; Ui configuration
-(setq inhibit-startup-message t)
-
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(set-fringe-mode 10)
-
-(setq visible-bell nil)
-
-(column-number-mode)
-(global-display-line-numbers-mode t)
-
-(setq redisplay-dont-pause t
-  scroll-margin 1
-  scroll-step 1
-  scroll-conservatively 10000
-  scroll-preserve-screen-position 1)
-
-(use-package rainbow-delimiters)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-;; Tabs Config
+;; ==== Tabs Config ====
 ;; Create a variable for our preferred tab width
 (setq custom-tab-width 4)
 
@@ -62,8 +44,34 @@
 ;; For the vim-like motions of ">>" and "<<".
 (setq-default evil-shift-width custom-tab-width)
 
+;; ========= Ui configuration ==========
+(setq inhibit-startup-message t)
 
-;; Keybindings
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(set-fringe-mode 10)
+
+(setq visible-bell nil)
+
+(column-number-mode)
+(global-display-line-numbers-mode t)
+(setq display-line-numbers-type 'relative)
+
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
+
+(use-package rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+
+;; ========= Keybindings =========
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (use-package general
@@ -77,12 +85,16 @@
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")))
 
+(use-package undo-tree)
+(add-hook 'evil-local-mode-hook 'turn-on-undo-tree-mode)
+
 (use-package evil
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
+  (setq evil-undo-system 'undo-tree)
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
@@ -95,12 +107,13 @@
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 
+(evil-ex-define-cmd "q" 'kill-this-buffer)
 (use-package evil-collection
   :after evil
   :config
   (evil-collection-init))
 
-;; Color theme
+;; ======== Color theme =========
 (use-package doom-themes
 	     :init (load-theme 'doom-one-light t))
 
@@ -110,14 +123,13 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 12)))
 
-;; Which key
+;; ========= Packages =========
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
 
-;; Ivy
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -147,7 +159,7 @@
   :config
   (counsel-mode 1))
 
-;; LSP Mode
+;; ========= LSP Mode =========
 (defun efs/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
@@ -170,20 +182,7 @@
 (use-package lsp-ivy)
 (use-package flycheck)
 
-(use-package emojify
-  :hook (after-init . global-emojify-mode))
-;; Gopls
-(require 'lsp-mode)
-(add-hook 'go-mode-hook #'lsp-deferred)
-
-;; Set up before-save hooks to format buffer and add/delete imports.
-;; Make sure you don't have other gofmt/goimports hooks enabled.
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-
-;; Company
+;; Company (Completion)
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
@@ -198,7 +197,16 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
-;; Commenting
+;; ==== Gopls ====
+(require 'lsp-mode)
+(add-hook 'go-mode-hook #'lsp-deferred)
+
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+;; ========= Commenting =========
 (use-package evil-nerd-commenter)
 (use-package evil-leader)
 
@@ -216,7 +224,7 @@
   "\\" 'evilnc-comment-operator ; if you prefer backslash key
   )
 
-;; Treemacs
+;; ========== Treemacs =========
 (use-package treemacs
              :bind
              (:map global-map
@@ -241,7 +249,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-nerd-commenter company-box company lsp-ui lsp-mode which-key doom-modeline all-the-icons doom-themes evil-collection evil general use-package)))
+   '(undo-tree evil-nerd-commenter company-box company lsp-ui lsp-mode which-key doom-modeline all-the-icons doom-themes evil-collection evil general use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,2 +1,4 @@
 .config/nvim/plugins/
+.config/emacs/*
+!.config/emacs/init.el
 *__pycache__
