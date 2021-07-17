@@ -243,6 +243,9 @@
   (other-window 1)
   (ansi-term (executable-find "bash")))
 
+;; ==============
+;; M  A  G  I  C
+;; ==============
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
