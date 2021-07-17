@@ -1,2 +1,2 @@
-./.config/neovim/plugins
-./__pycache__
+.config/nvim/plugins/
+*__pycache__
