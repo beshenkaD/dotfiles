@@ -4,8 +4,9 @@ source ~/.profile
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
 	. /usr/share/bash-completion/bash_completion
 
-# Ignore dups
+# History
 export HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
 
 # Enable colors
 alias ls='ls --color=auto'
@@ -15,6 +16,8 @@ alias grep='grep --color=auto'
 alias cp='cp -i'     # Confirm before overwriting
 alias df='df -h'     # Human-readable sizes
 alias free='free -m' # Sizes in MB
+alias ..='cd ..'
+alias ...='cd ../..'
 
 . /etc/os-release
 if [ "$NAME" != "Gentoo Linux" ]; then
