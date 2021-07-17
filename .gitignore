@@ -1,2 +1,2 @@
-neovim/plugins
-blender/2.82/scripts/
+./.config/neovim/plugins
+./__pycache__
