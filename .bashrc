@@ -4,6 +4,9 @@ source ~/.profile
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
 	. /usr/share/bash-completion/bash_completion
 
+# Ignore dups
+export HISTCONTROL=ignoreboth:erasedups
+
 # Enable colors
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
