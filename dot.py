@@ -57,7 +57,7 @@ def backup(path):
 def get_dest(src):
     home = os.getenv('HOME')
     if home is None:
-        cprint('FAIL', "$HOME is unset. I can't define your home directory!")
+        cprint('FAIL', "$HOME is unset. I can't find your home directory!")
         sys.exit(1)
 
     new = home + '/' + src
