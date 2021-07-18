@@ -166,17 +166,17 @@ if args.hooks and hooks is None:
     cprint('FAIL', "hooks doesn't exist. Create it or remove `-H, --hooks` argument")
     sys.exit(1)
 
-if args.install is not None and args.remove is not None:
+if args.install and args.remove:
     parser.print_help()
 
-elif args.install is not None:
+elif args.install:
     for dot in args.install:
         install(dot, get_dest(dot))
 
         if args.hooks:
             run_hooks(dot)
 
-elif args.remove is not None:
+elif args.remove:
     for dot in args.remove:
         remove(get_dest(dot))
 
