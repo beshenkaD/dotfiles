@@ -33,6 +33,7 @@ COLOR_GIT_STAGED='\[\033[0;36m\]'
 COLOR_RESET='\[\033[0m\]'
 
 git_prompt() {
+  export LC_ALL=C
   if [ -e ".git" ]; then
     branch_name=$(git symbolic-ref -q HEAD)
     branch_name=${branch_name##refs/heads/}
