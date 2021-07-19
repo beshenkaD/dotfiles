@@ -37,7 +37,7 @@ class colors:
 def cprint(color, text):
     promt = colors.HEADER + '[dot] ' + colors.ENDC
 
-    print(promt + eval(f'colors.{color}') + text + colors.ENDC)
+    print(promt + color + text + colors.ENDC)
 
 
 # ========== Functions ==========
@@ -51,13 +51,13 @@ def backup(path):
     try:
         os.replace(path, abspath('./backup') + '/' + basename(path))
     except OSError as e:
-        cprint('FAIL', f'{e}')
+        cprint(colors.FAIL, f'{e}')
 
 
 def get_dest(src):
     home = os.getenv('HOME')
     if home is None:
-        cprint('FAIL', "$HOME is unset. I can't find your home directory!")
+        cprint(colors.FAIL, "$HOME is unset. I can't find your home directory!")
         sys.exit(1)
 
     new = home + '/' + src
@@ -66,7 +66,7 @@ def get_dest(src):
 
 
 def install(src, dest):
-    cprint('GREEN', f'installing {src} to {dest}')
+    cprint(colors.GREEN, f'installing {src} to {dest}')
 
     if (isdir(dest) or isfile(dest)) and (not islink(dest)):
         backup(dest)
@@ -76,22 +76,22 @@ def install(src, dest):
     elif isfile(dest) and not islink(dest):
         os.remove(dest)
     elif islink(dest):
-        cprint('WARNING', f'`{src}` is already installed')
+        cprint(colors.WARNING, f'`{src}` is already installed')
         return
 
     try:
         os.symlink(abspath(src), dest)
     except OSError as e:
-        cprint('FAIL', f'{e}')
+        cprint(colors.FAIL, f'{e}')
 
 
 def remove(path):
-    cprint('GREEN', f'removing {path}')
+    cprint(colors.GREEN, f'removing {path}')
 
     try:
         os.unlink(path)
     except OSError as e:
-        cprint('FAIL', f'{e}')
+        cprint(colors.FAIL, f'{e}')
 
 
 def show():
@@ -135,10 +135,10 @@ def show():
                 add(src, get_dest(src))
 
     for dot in i:
-        cprint('GREEN', f'[x] {dot}')
+        cprint(colors.GREEN, f'[x] {dot}')
 
     for dot in n:
-        cprint('BLUE', f'[ ] {dot}')
+        cprint(colors.BLUE, f'[ ] {dot}')
 
 
 def run_hooks(src):
@@ -147,7 +147,7 @@ def run_hooks(src):
     except:
         return
 
-    cprint('GREEN', f'running hooks for {src}')
+    cprint(colors.GREEN, f'running hooks for {src}')
     os.system(command)
 
 
@@ -163,7 +163,7 @@ parser.add_argument('-s', '--show', action='store_true', help='show installed do
 args = parser.parse_args()
 
 if args.hooks and hooks is None:
-    cprint('FAIL', "hooks doesn't exist. Create it or remove `-H, --hooks` argument")
+    cprint(colors.FAIL, "hooks doesn't exist. Create it or remove `-H, --hooks` argument")
     sys.exit(1)
 
 if args.install and args.remove:
