@@ -25,26 +25,6 @@
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
 
-;; Neotree
-(use-package neotree
-  :ensure t
-  :bind ("<f8>" . 'neotree-toggle)
-  :init
-  ;; slow rendering
-  (setq inhibit-compacting-font-caches t)
-
-  ;; set icons theme
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
-  ;; Every time when the neotree window is opened, let it find current file and jump to node
-  (setq neo-smart-open t)
-
-  ;; When running ‘projectile-switch-project’ (C-c p p), ‘neotree’ will change root automatically
-  ; (setq projectile-switch-project-action 'neotree-projectile-action)
-
-  ;; show hidden files
-  (setq-default neo-show-hidden-files t))
-
 ;; ========= Ui configuration ==========
 (setq inhibit-startup-message t)
 
@@ -64,9 +44,6 @@
       scroll-step 1
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
-
-(use-package rainbow-delimiters)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; Appearance
 (use-package doom-themes
@@ -114,51 +91,46 @@
 	     (evil-collection-init))
 
 ;; ========= Packages =========
+(use-package counsel
+  :after ivy
+  :config (counsel-mode))
+
 (use-package ivy
-	     :diminish
-	     :bind (("C-s" . swiper)
-		    :map ivy-minibuffer-map
-		    ("TAB" . ivy-alt-done)
-		    ("C-l" . ivy-alt-done)
-		    ("C-j" . ivy-next-line)
-		    ("C-k" . ivy-previous-line)
-		    :map ivy-switch-buffer-map
-		    ("C-k" . ivy-previous-line)
-		    ("C-l" . ivy-done)
-		    ("C-d" . ivy-switch-buffer-kill)
-		    :map ivy-reverse-i-search-map
-		    ("C-k" . ivy-previous-line)
-		    ("C-d" . ivy-reverse-i-search-kill))
-	     :config
-	     (ivy-mode 1))
+  :defer 0.1
+  :diminish
+  :bind (("C-c C-r" . ivy-resume)
+         ("C-x B" . ivy-switch-buffer-other-window))
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :config (ivy-mode))
 
 (use-package ivy-rich
-	     :init
-	     (ivy-rich-mode 1))
+  :after ivy
+  :custom
+  (ivy-virtual-abbreviate 'full
+                          ivy-rich-switch-buffer-align-virtual-buffer t
+                          ivy-rich-path-style 'abbrev)
+  :config
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer))
 
-(use-package counsel
-	     :bind (("C-M-j" . 'counsel-switch-buffer)
-		    :map minibuffer-local-map
-		    ("C-r" . 'counsel-minibuffer-history))
-	     :config
-	     (counsel-mode 1))
+(use-package swiper
+  :after ivy
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 
 ;; ======== Code =======
 ;; Complete
 (use-package company)
 
-(use-package company-box
-	     :hook (company-mode . company-box-mode))
-
 ;; Flymake
 (use-package flymake-diagnostic-at-point
   :after flymake
+  :custom
+  (flymake-diagnostic-at-point-timer-delay 0.1)
   :config
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
-
-;; Eldoc
-(use-package eldoc-box)
-(add-hook 'eglot--managed-mode-hook #'eldoc-box-hover-mode t)
 
 ;; LSP
 (use-package eglot)
@@ -191,8 +163,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(undo-tree evil-nerd-commenter company-box company lsp-ui lsp-mode which-key doom-modeline all-the-icons doom-themes evil-collection evil general use-package)))
+   '(undo-tree evil-nerd-commenter company lsp-ui lsp-mode which-key doom-modeline all-the-icons doom-themes evil-collection evil general use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
