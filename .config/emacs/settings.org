@@ -293,6 +293,7 @@ A better fuzzy matching algorithm for ivy
   (use-package lsp-mode
     :init (setq lsp-inhibit-message t
           lsp-eldoc-render-all nil
+          lsp-enable-snippet t
           lsp-highlight-symbol-at-point nil
           lsp-keymap-prefix "C-c l")
     :config
@@ -331,25 +332,31 @@ Syntax checking
     :ensure t
     :init (global-flycheck-mode))
 #+end_src
-
-** Languages
-Go
+** Yasnippets
 #+begin_src emacs-lisp
-  (use-package go-mode
-    :mode ("\\.go\\'" . go-mode))
-
-  (add-hook 'go-mode-hook #'lsp-deferred)
-  (add-hook 'go-mode-hook 'flycheck-mode)
-
-  (defun lsp-go-install-save-hooks ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-
-  (lsp-register-custom-settings
-   '(("gopls.completeUnimported" t t)
-     ("gopls.staticcheck" t t)))
+  (use-package yasnippet
+    :config
+    (use-package yasnippet-snippets)
+    (yas-global-mode t))
 #+end_src
+** Languages
+***  Go
+    #+begin_src emacs-lisp
+      (use-package go-mode
+        :mode ("\\.go\\'" . go-mode))
+
+      (add-hook 'go-mode-hook #'lsp-deferred)
+      (add-hook 'go-mode-hook 'flycheck-mode)
+
+      (defun lsp-go-install-save-hooks ()
+        (add-hook 'before-save-hook #'lsp-format-buffer t t)
+        (add-hook 'before-save-hook #'lsp-organize-imports t t))
+      (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+      (lsp-register-custom-settings
+       '(("gopls.completeUnimported" t t)
+         ("gopls.staticcheck" t t)))
+    #+end_src
 
 * Org mode
 ** [[https://github.com/integral-dw/org-superstar-mode][org-superstar]]
