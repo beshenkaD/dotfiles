@@ -1,11 +1,7 @@
 "============= Plugins =============
 call plug#begin(stdpath('config') . '/plugins')
 
-Plug 'vim-airline/vim-airline'                  "Useless x1
-Plug 'ryanoasis/vim-devicons'                   "Useless x2
-Plug 'vim-airline/vim-airline-themes'           "Useless x3
-Plug 'tpope/vim-commentary'                     "Very self-explanatory
-Plug 'sheerun/vim-polyglot'                     "Syntax
+Plug 'tpope/vim-commentary'                    
 
 call plug#end()
 

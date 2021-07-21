@@ -1,0 +1,319 @@
+# Created 2021-07-21 Ср 18:58
+#+TITLE: emacs config
+
+* General options
+** Memory
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold 50000000)
+  (setq large-file-warning-threshold 100000000)
+#+end_src
+
+** Package management
+#+begin_src emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (setq package-archives '(("org" . "http://orgmode.org/elpa/")
+  						   ("melpa" . "http://melpa.org/packages/")
+  						   ("gnu" . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+
+  (eval-when-compile
+    (require 'use-package))
+
+  (setq use-package-always-ensure t)
+#+end_src
+
+** Other
+Disable backup files
+
+#+begin_src emacs-lisp
+  (setq make-backup-files nil) 
+#+end_src
+
+** Indentation and whitespace
+#+begin_src emacs-lisp
+  (setq-default tab-width 4)
+  (setq-default evil-shift-width tab-width)
+
+  (defun disable-tabs () (setq indent-tabs-mode nil))
+  (defun enable-tabs  () (setq indent-tabs-mode t))
+
+  (defun set-tab-width (v) 
+     (setq tab-width v)
+     (setq evil-shift-width v))
+#+end_src
+Some language-specific settings
+
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook 'disable-tabs)
+
+  ; Gofmt prefer tabs
+  (add-hook 'go-mode-hook 'enable-tabs)
+
+  ; TODO: make it work
+  (add-hook 'c-mode-hook (lambda () (set-tab-width 8)))
+  (add-hook 'c++-mode-hook (lambda () (set-tab-width 8)))
+
+  (setq-default electric-indent-inhibit t)
+#+end_src
+
+Sometimes it's useful to have guides for indentation
+
+#+begin_src emacs-lisp
+  (use-package highlight-indent-guides
+     :config
+     (setq highlight-indent-guides-delay 0)
+     (setq highlight-indent-guides-method 'character)
+     (setq highlight-indent-guides-responsive 'top)
+
+     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+     (add-hook 'org-mode-hook 'highlight-indent-guides-mode))
+#+end_src
+
+** Scrolling
+#+begin_src emacs-lisp
+  (setq redisplay-dont-pause t
+	scroll-margin 1
+	scroll-step 1
+	scroll-conservatively 10000
+	scroll-preserve-screen-position 1)
+#+end_src
+
+** Projectile
+#+begin_src emacs-lisp
+  (use-package projectile
+	:init
+	(projectile-mode +1)
+	:bind (:map projectile-mode-map
+				("C-c p" . projectile-command-map)))
+#+end_src
+
+* Appearance
+** General
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (setq inhibit-splash-screen t)
+
+  (global-hl-line-mode 1)       ;; Highlight current line
+  (show-paren-mode 1)           ;; Show matching parenthesis
+  (setq show-paren-delay 0)    
+#+end_src
+
+** Modeline
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+        :init (doom-modeline-mode 1)
+  	    :custom ((doom-modeline-height 12)))
+#+end_src
+
+** Themes
+#+begin_src emacs-lisp
+  (use-package doom-themes
+  		:init (load-theme 'doom-one t))
+
+  (use-package all-the-icons)
+#+end_src
+
+** Dashboard
+#+begin_src emacs-lisp
+  (use-package dashboard
+	  :config
+	  (dashboard-setup-startup-hook))
+
+  (setq dashboard-items '((recents  . 5)
+						  (bookmarks . 5)
+						  (projects . 5)
+						  (agenda . 5)))
+#+end_src
+
+* Keybindings
+make ESC quit promts
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
+
+** [[https://github.com/abo-abo/swiper][ivy/swiper/counsel]]
+#+begin_src emacs-lisp
+  (use-package ivy
+		:diminish
+		:bind (("C-s" . swiper)
+		 :map ivy-minibuffer-map
+		 ("TAB" . ivy-alt-done)
+		 ("C-l" . ivy-alt-done)
+		 ("C-j" . ivy-next-line)
+		 ("C-k" . ivy-previous-line)
+		 :map ivy-switch-buffer-map
+		 ("C-k" . ivy-previous-line)
+		 ("C-l" . ivy-done)
+		 ("C-d" . ivy-switch-buffer-kill)
+		 :map ivy-reverse-i-search-map
+		 ("C-k" . ivy-previous-line)
+		 ("C-d" . ivy-reverse-i-search-kill))
+		:config
+		(ivy-mode 1))
+
+  (use-package ivy-rich
+		:init
+		(ivy-rich-mode 1))
+
+  (use-package counsel
+		:bind (("C-M-j" . 'counsel-switch-buffer)
+		 :map minibuffer-local-map
+		 ("C-r" . 'counsel-minibuffer-history))
+		:config
+		(counsel-mode 1))
+
+  (use-package lsp-ivy
+        :after lsp)
+#+end_src
+
+** [[https://github.com/lewang/flx][flx]]
+A better fuzzy matching algorithm for ivy
+#+begin_src emacs-lisp
+  (use-package flx
+        :config
+        (setq ivy-initial-inputs-alist nil))
+#+end_src
+
+** [[https://github.com/justbur/emacs-which-key][which-key]]
+#+begin_src emacs-lisp
+  (use-package which-key
+		:init (which-key-mode)
+		:diminish which-key-mode
+		:config
+		(setq which-key-idle-delay 1))
+#+end_src
+
+* Evil
+Any editor without vim keys is useless shit
+
+** [[https://www.emacswiki.org/emacs/UndoTree][undo-tree]]
+#+begin_src emacs-lisp
+  (use-package undo-tree
+        :init
+        (global-undo-tree-mode 1))
+#+end_src
+
+** [[https://github.com/emacs-evil/evil][evil-mode]]
+#+begin_src emacs-lisp
+  (use-package evil
+		:init
+		(setq evil-want-integration t)
+		(setq evil-want-keybinding nil)
+		(setq evil-undo-system 'undo-tree)
+		:config
+		(evil-mode 1))
+#+end_src
+
+** [[https://github.com/emacs-evil/evil-collection][evil-collection]]
+#+begin_src emacs-lisp
+  (use-package evil-collection
+        :after evil
+        :ensure t
+        :config
+        (evil-collection-init))
+#+end_src
+
+** [[https://github.com/Somelauw/evil-org-mode][evil-org]]
+#+begin_src emacs-lisp
+  (use-package evil-org
+        :after org
+        :after evil
+        :config
+        (add-hook 'org-mode-hook 'evil-org-mode)
+        (add-hook 'evil-org-mode-hook
+  	      (lambda () (evil-org-set-key-theme)))
+        (require 'evil-org-agenda)
+        (evil-org-agenda-set-keys))
+#+end_src
+
+** [[https://github.com/linktohack/evil-commentary][evil-commentary]]
+#+begin_src emacs-lisp
+  (use-package evil-commentary
+        :after evil
+        :config
+        (evil-commentary-mode))
+#+end_src
+
+** Relative line numbers
+#+begin_src emacs-lisp
+  (column-number-mode)
+  (global-display-line-numbers-mode t)
+  (setq display-line-numbers-type 'relative)
+#+end_src
+
+Disable it for some modes
+#+begin_src emacs-lisp
+  (defun disable-relative-line-numbers () (setq display-line-numbers-type t))
+
+  (add-hook 'org-mode-hook 'disable-relative-line-numbers)
+#+end_src
+
+* Programming environment
+** [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]]
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+        :init (setq lsp-inhibit-message t
+  	      lsp-eldoc-render-all nil
+  	      lsp-highlight-symbol-at-point nil
+  	      lsp-keymap-prefix "C-c l")
+		:config
+		(lsp-enable-which-key-integration t))
+#+end_src
+
+** [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
+#+begin_src emacs-lisp
+  (use-package lsp-ui
+        :config
+        (setq lsp-ui-sideline-enable t
+		lsp-ui-sideline-show-symbol nil
+		lsp-ui-sideline-show-hover nil
+		lsp-ui-flycheck-enable t
+		lsp-ui-imenu-enable t
+		lsp-ui-sideline-show-code-actions t
+		lsp-ui-sideline-update-mode 'point))
+
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+#+end_src
+
+** Company
+Completion
+#+begin_src emacs-lisp
+  (use-package company
+        :config
+        (setq company-idle-delay 0.0)
+        (global-company-mode t))
+#+end_src
+
+** Flycheck
+Syntax checking
+#+begin_src emacs-lisp
+  (use-package flycheck
+        :ensure t
+        :init (global-flycheck-mode))
+#+end_src
+
+** Languages
+Go
+#+begin_src emacs-lisp
+  (use-package go-mode
+		:mode ("\\.go\\'" . go-mode))
+
+  (add-hook 'go-mode-hook #'lsp-deferred)
+  (add-hook 'go-mode-hook 'flycheck-mode)
+
+  (defun lsp-go-install-save-hooks ()
+	(add-hook 'before-save-hook #'lsp-format-buffer t t)
+	(add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+  (lsp-register-custom-settings
+   '(("gopls.completeUnimported" t t)
+	 ("gopls.staticcheck" t t)))
+#+end_src
