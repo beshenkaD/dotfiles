@@ -1,5 +1,6 @@
 # Created 2021-07-21 Ср 19:40
 #+TITLE: emacs config
+#+OPTIONS: toc:2
 
 * General options
 ** Memory
@@ -13,8 +14,8 @@
   (require 'package)
   (setq package-enable-at-startup nil)
   (setq package-archives '(("org" . "http://orgmode.org/elpa/")
-  						 ("melpa" . "http://melpa.org/packages/")
-  						 ("gnu" . "https://elpa.gnu.org/packages/")))
+                           ("melpa" . "http://melpa.org/packages/")
+                           ("gnu" . "https://elpa.gnu.org/packages/")))
   (package-initialize)
 
   (unless (package-installed-p 'use-package)
@@ -29,11 +30,19 @@
 
 ** Other
 Disable backup files
-
 #+begin_src emacs-lisp
-  (setq make-backup-files nil) 
+  (setq make-backup-files nil)
 #+end_src
 
+Auto pairs. Pretty!
+#+begin_src emacs-lisp
+  (electric-pair-mode 1)
+#+end_src
+
+Disable stupid beeps
+#+begin_src emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+end_src
 ** Indentation and whitespace
 #+begin_src emacs-lisp
   (setq-default tab-width 4)
@@ -77,14 +86,14 @@ Sometimes it's useful to have guides for indentation (slow)
 ** Scrolling
 #+begin_src emacs-lisp
   (setq hscroll-margin 2
-		hscroll-step 1
-		scroll-conservatively 101
-		scroll-margin 0
-		scroll-preserve-screen-position t
-		auto-window-vscroll nil
-		;; mouse
-		mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
-		mouse-wheel-scroll-amount-horizontal 2)
+        hscroll-step 1
+        scroll-conservatively 101
+        scroll-margin 0
+        scroll-preserve-screen-position t
+        auto-window-vscroll nil
+        ;; mouse
+        mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
+        mouse-wheel-scroll-amount-horizontal 2)
 #+end_src
 
 ** Projectile
@@ -93,7 +102,7 @@ Sometimes it's useful to have guides for indentation (slow)
         :init
         (projectile-mode +1)
         :bind (:map projectile-mode-map
-  			      ("C-c p" . projectile-command-map)))
+                  ("C-c p" . projectile-command-map)))
 #+end_src
 
 * Appearance
@@ -112,33 +121,35 @@ Sometimes it's useful to have guides for indentation (slow)
 ** Font
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-	:font "Hack"
-	:height 100
-	:weight 'regular)
+    :font "Hack"
+    :height 100
+    :weight 'normal)
   (set-face-attribute 'variable-pitch nil
-	:font "Ubuntu"
-	:height 110
-	:weight 'medium)
+    :font "Ubuntu"
+    :height 110
+    :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-	:font "Hack"
-	:height 100
-	:weight 'regular)
+    :font "Hack"
+    :height 100
+    :weight 'normal)
+
+  (global-prettify-symbols-mode 1)
 #+end_src
 
 ** Modeline
 #+begin_src emacs-lisp
   (use-package doom-modeline
         :init (doom-modeline-mode 1)
-  	    :custom ((doom-modeline-height 12)))
+        :custom ((doom-modeline-height 12)))
 #+end_src
 
 ** Themes
 #+begin_src emacs-lisp
   (use-package doom-themes
-		:config
-		(setq doom-themes-enable-bold t)
-		(setq doom-themes-enable-italic t)
-		:init (load-theme 'doom-one t))
+        :config
+        (setq doom-themes-enable-bold t)
+        (setq doom-themes-enable-italic t)
+        :init (load-theme 'doom-one t))
 
   (use-package all-the-icons)
 #+end_src
@@ -146,71 +157,13 @@ Sometimes it's useful to have guides for indentation (slow)
 ** Dashboard
 #+begin_src emacs-lisp
   (use-package dashboard
-  	:config
-  	(dashboard-setup-startup-hook))
+    :config
+    (dashboard-setup-startup-hook))
 
   (setq dashboard-items '((recents  . 5)
                           (bookmarks . 5)
                           (projects . 5)
                           (agenda . 5)))
-#+end_src
-
-* Keybindings
-make ESC quit promts
-#+begin_src emacs-lisp
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-#+end_src
-
-** [[https://github.com/abo-abo/swiper][ivy/swiper/counsel]]
-#+begin_src emacs-lisp
-  (use-package ivy
-  	      :diminish
-  	      :bind (("C-s" . swiper)
-  	       :map ivy-minibuffer-map
-  	       ("TAB" . ivy-alt-done)
-  	       ("C-l" . ivy-alt-done)
-  	       ("C-j" . ivy-next-line)
-  	       ("C-k" . ivy-previous-line)
-  	       :map ivy-switch-buffer-map
-  	       ("C-k" . ivy-previous-line)
-  	       ("C-l" . ivy-done)
-  	       ("C-d" . ivy-switch-buffer-kill)
-  	       :map ivy-reverse-i-search-map
-  	       ("C-k" . ivy-previous-line)
-  	       ("C-d" . ivy-reverse-i-search-kill))
-  	      :config
-  	      (ivy-mode 1))
-
-  (use-package ivy-rich
-  	      :init
-  	      (ivy-rich-mode 1))
-
-  (use-package counsel
-  	      :bind (("C-M-j" . 'counsel-switch-buffer)
-  	       :map minibuffer-local-map
-  	       ("C-r" . 'counsel-minibuffer-history))
-  	      :config
-  	      (counsel-mode 1))
-
-  (use-package lsp-ivy
-        :after lsp)
-#+end_src
-
-** [[https://github.com/lewang/flx][flx]]
-A better fuzzy matching algorithm for ivy
-#+begin_src emacs-lisp
-  (use-package flx
-        :config
-        (setq ivy-initial-inputs-alist nil))
-#+end_src
-
-** [[https://github.com/justbur/emacs-which-key][which-key]]
-#+begin_src emacs-lisp
-  (use-package which-key
-  	      :init (which-key-mode)
-  	      :diminish which-key-mode
-  	      :config
-  	      (setq which-key-idle-delay 1))
 #+end_src
 
 * Evil
@@ -226,12 +179,13 @@ Any editor without vim keys is useless shit
 ** [[https://github.com/emacs-evil/evil][evil-mode]]
 #+begin_src emacs-lisp
   (use-package evil
-  	      :init
-  	      (setq evil-want-integration t)
-  	      (setq evil-want-keybinding nil)
-  	      (setq evil-undo-system 'undo-tree)
-  	      :config
-  	      (evil-mode 1))
+		  :init
+		  (setq evil-want-integration t)
+		  (setq evil-want-keybinding nil)
+		  (setq evil-undo-system 'undo-tree)
+		  :config
+		  (define-key evil-normal-state-map (kbd "C-p") 'dired-jump) ;; Like FZF in vim, but better
+		  (evil-mode 1))
 #+end_src
 
 ** [[https://github.com/emacs-evil/evil-collection][evil-collection]]
@@ -250,7 +204,7 @@ Any editor without vim keys is useless shit
         :config
         (add-hook 'org-mode-hook 'evil-org-mode)
         (add-hook 'evil-org-mode-hook
-  	    (lambda () (evil-org-set-key-theme)))
+        (lambda () (evil-org-set-key-theme)))
         (require 'evil-org-agenda)
         (evil-org-agenda-set-keys))
 #+end_src
@@ -277,16 +231,74 @@ Disable it for some modes
   (add-hook 'org-mode-hook 'disable-relative-line-numbers)
 #+end_src
 
+* Keybindings
+make ESC quit promts
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
+
+** [[https://github.com/abo-abo/swiper][ivy/swiper/counsel]]
+#+begin_src emacs-lisp
+  (use-package ivy
+          :diminish
+          :bind (("C-s" . swiper)
+           :map ivy-minibuffer-map
+           ("TAB" . ivy-alt-done)
+           ("C-l" . ivy-alt-done)
+           ("C-j" . ivy-next-line)
+           ("C-k" . ivy-previous-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+          :config
+          (ivy-mode 1))
+
+  (use-package ivy-rich
+          :init
+          (ivy-rich-mode 1))
+
+  (use-package counsel
+          :bind (("C-M-j" . 'counsel-switch-buffer)
+           :map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history))
+          :config
+          (counsel-mode 1))
+
+  (use-package lsp-ivy
+        :after lsp)
+#+end_src
+
+** [[https://github.com/lewang/flx][flx]]
+A better fuzzy matching algorithm for ivy
+#+begin_src emacs-lisp
+  (use-package flx
+        :config
+        (setq ivy-initial-inputs-alist nil))
+#+end_src
+
+** [[https://github.com/justbur/emacs-which-key][which-key]]
+#+begin_src emacs-lisp
+  (use-package which-key
+          :init (which-key-mode)
+          :diminish which-key-mode
+          :config
+          (setq which-key-idle-delay 1))
+#+end_src
+
 * Programming environment
 ** [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]]
 #+begin_src emacs-lisp
   (use-package lsp-mode
         :init (setq lsp-inhibit-message t
-  	    lsp-eldoc-render-all nil
-  	    lsp-highlight-symbol-at-point nil
-  	    lsp-keymap-prefix "C-c l")
-  	      :config
-  	      (lsp-enable-which-key-integration t))
+        lsp-eldoc-render-all nil
+        lsp-highlight-symbol-at-point nil
+        lsp-keymap-prefix "C-c l")
+          :config
+          (lsp-enable-which-key-integration t))
 #+end_src
 
 ** [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
@@ -294,12 +306,13 @@ Disable it for some modes
   (use-package lsp-ui
         :config
         (setq lsp-ui-sideline-enable t
-  	      lsp-ui-sideline-show-symbol t
-  	      lsp-ui-sideline-show-hover nil
-  	      lsp-ui-flycheck-enable t
-  	      lsp-ui-imenu-enable t
-  	      lsp-ui-sideline-show-code-actions t
-  	      lsp-ui-sideline-update-mode 'point))
+          lsp-ui-flycheck-enable t
+          lsp-eldoc-enable-hover nil
+          lsp-ui-imenu-enable t
+          lsp-ui-doc-position 'at-point
+          lsp-signature-auto-activate t
+          lsp-ui-sideline-show-code-actions t
+          lsp-ui-sideline-update-mode 'point))
 
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 #+end_src
@@ -325,7 +338,7 @@ Syntax checking
 Go
 #+begin_src emacs-lisp
   (use-package go-mode
-  	      :mode ("\\.go\\'" . go-mode))
+          :mode ("\\.go\\'" . go-mode))
 
   (add-hook 'go-mode-hook #'lsp-deferred)
   (add-hook 'go-mode-hook 'flycheck-mode)
@@ -338,4 +351,10 @@ Go
   (lsp-register-custom-settings
    '(("gopls.completeUnimported" t t)
          ("gopls.staticcheck" t t)))
+#+end_src
+
+* Org mode
+** [[https://github.com/integral-dw/org-superstar-mode][org-superstar]]
+#+begin_src emacs-lisp
+  (use-package org-superstar :after org :hook (org-mode . org-superstar-mode))
 #+end_src
