@@ -1,7 +1,15 @@
-hooks = {
-    '.config/nvim/': """curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    nvim --headless +PlugInstall +qa""",
+from os import system
 
-    '.config/emacs/': 'rm -rf ~/.emacs.d ~/.config/emacs.d ~/.emacs',
+def nvim():
+    plug = """
+    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    """
+    inst = "nvim --headless +PlugInstall +qa"
+
+    system(plug)
+    system(inst)
+
+hooks = {
+    '.config/nvim/': nvim,
 }

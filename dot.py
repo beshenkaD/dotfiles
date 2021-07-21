@@ -148,7 +148,10 @@ def run_hooks(src):
         return
 
     cprint(colors.GREEN, f'running hooks for {src}')
-    os.system(command)
+    try:
+        command()
+    except:
+        cprint(colors.FAIL, f'hook for {src} is not a function!')
 
 
 # ========== Main ==========
