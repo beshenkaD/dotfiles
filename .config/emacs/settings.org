@@ -1,4 +1,4 @@
-# Created 2021-07-21 Ср 18:58
+# Created 2021-07-21 Ср 19:40
 #+TITLE: emacs config
 
 * General options
@@ -13,8 +13,8 @@
   (require 'package)
   (setq package-enable-at-startup nil)
   (setq package-archives '(("org" . "http://orgmode.org/elpa/")
-  						   ("melpa" . "http://melpa.org/packages/")
-  						   ("gnu" . "https://elpa.gnu.org/packages/")))
+  						 ("melpa" . "http://melpa.org/packages/")
+  						 ("gnu" . "https://elpa.gnu.org/packages/")))
   (package-initialize)
 
   (unless (package-installed-p 'use-package)
@@ -77,19 +77,19 @@ Sometimes it's useful to have guides for indentation
 ** Scrolling
 #+begin_src emacs-lisp
   (setq redisplay-dont-pause t
-	scroll-margin 1
-	scroll-step 1
-	scroll-conservatively 10000
-	scroll-preserve-screen-position 1)
+        scroll-margin 1
+        scroll-step 1
+        scroll-conservatively 10000
+        scroll-preserve-screen-position 1)
 #+end_src
 
 ** Projectile
 #+begin_src emacs-lisp
   (use-package projectile
-	:init
-	(projectile-mode +1)
-	:bind (:map projectile-mode-map
-				("C-c p" . projectile-command-map)))
+        :init
+        (projectile-mode +1)
+        :bind (:map projectile-mode-map
+  			      ("C-c p" . projectile-command-map)))
 #+end_src
 
 * Appearance
@@ -109,13 +109,13 @@ Sometimes it's useful to have guides for indentation
 #+begin_src emacs-lisp
   (use-package doom-modeline
         :init (doom-modeline-mode 1)
-  	    :custom ((doom-modeline-height 12)))
+  	  :custom ((doom-modeline-height 12)))
 #+end_src
 
 ** Themes
 #+begin_src emacs-lisp
   (use-package doom-themes
-  		:init (load-theme 'doom-one t))
+  	      :init (load-theme 'doom-one t))
 
   (use-package all-the-icons)
 #+end_src
@@ -123,13 +123,13 @@ Sometimes it's useful to have guides for indentation
 ** Dashboard
 #+begin_src emacs-lisp
   (use-package dashboard
-	  :config
-	  (dashboard-setup-startup-hook))
+  	:config
+  	(dashboard-setup-startup-hook))
 
   (setq dashboard-items '((recents  . 5)
-						  (bookmarks . 5)
-						  (projects . 5)
-						  (agenda . 5)))
+  						(bookmarks . 5)
+  						(projects . 5)
+  						(agenda . 5)))
 #+end_src
 
 * Keybindings
@@ -141,33 +141,33 @@ make ESC quit promts
 ** [[https://github.com/abo-abo/swiper][ivy/swiper/counsel]]
 #+begin_src emacs-lisp
   (use-package ivy
-		:diminish
-		:bind (("C-s" . swiper)
-		 :map ivy-minibuffer-map
-		 ("TAB" . ivy-alt-done)
-		 ("C-l" . ivy-alt-done)
-		 ("C-j" . ivy-next-line)
-		 ("C-k" . ivy-previous-line)
-		 :map ivy-switch-buffer-map
-		 ("C-k" . ivy-previous-line)
-		 ("C-l" . ivy-done)
-		 ("C-d" . ivy-switch-buffer-kill)
-		 :map ivy-reverse-i-search-map
-		 ("C-k" . ivy-previous-line)
-		 ("C-d" . ivy-reverse-i-search-kill))
-		:config
-		(ivy-mode 1))
+  	      :diminish
+  	      :bind (("C-s" . swiper)
+  	       :map ivy-minibuffer-map
+  	       ("TAB" . ivy-alt-done)
+  	       ("C-l" . ivy-alt-done)
+  	       ("C-j" . ivy-next-line)
+  	       ("C-k" . ivy-previous-line)
+  	       :map ivy-switch-buffer-map
+  	       ("C-k" . ivy-previous-line)
+  	       ("C-l" . ivy-done)
+  	       ("C-d" . ivy-switch-buffer-kill)
+  	       :map ivy-reverse-i-search-map
+  	       ("C-k" . ivy-previous-line)
+  	       ("C-d" . ivy-reverse-i-search-kill))
+  	      :config
+  	      (ivy-mode 1))
 
   (use-package ivy-rich
-		:init
-		(ivy-rich-mode 1))
+  	      :init
+  	      (ivy-rich-mode 1))
 
   (use-package counsel
-		:bind (("C-M-j" . 'counsel-switch-buffer)
-		 :map minibuffer-local-map
-		 ("C-r" . 'counsel-minibuffer-history))
-		:config
-		(counsel-mode 1))
+  	      :bind (("C-M-j" . 'counsel-switch-buffer)
+  	       :map minibuffer-local-map
+  	       ("C-r" . 'counsel-minibuffer-history))
+  	      :config
+  	      (counsel-mode 1))
 
   (use-package lsp-ivy
         :after lsp)
@@ -184,10 +184,10 @@ A better fuzzy matching algorithm for ivy
 ** [[https://github.com/justbur/emacs-which-key][which-key]]
 #+begin_src emacs-lisp
   (use-package which-key
-		:init (which-key-mode)
-		:diminish which-key-mode
-		:config
-		(setq which-key-idle-delay 1))
+  	      :init (which-key-mode)
+  	      :diminish which-key-mode
+  	      :config
+  	      (setq which-key-idle-delay 1))
 #+end_src
 
 * Evil
@@ -203,12 +203,12 @@ Any editor without vim keys is useless shit
 ** [[https://github.com/emacs-evil/evil][evil-mode]]
 #+begin_src emacs-lisp
   (use-package evil
-		:init
-		(setq evil-want-integration t)
-		(setq evil-want-keybinding nil)
-		(setq evil-undo-system 'undo-tree)
-		:config
-		(evil-mode 1))
+  	      :init
+  	      (setq evil-want-integration t)
+  	      (setq evil-want-keybinding nil)
+  	      (setq evil-undo-system 'undo-tree)
+  	      :config
+  	      (evil-mode 1))
 #+end_src
 
 ** [[https://github.com/emacs-evil/evil-collection][evil-collection]]
@@ -228,7 +228,7 @@ Any editor without vim keys is useless shit
         :config
         (add-hook 'org-mode-hook 'evil-org-mode)
         (add-hook 'evil-org-mode-hook
-  	      (lambda () (evil-org-set-key-theme)))
+  	    (lambda () (evil-org-set-key-theme)))
         (require 'evil-org-agenda)
         (evil-org-agenda-set-keys))
 #+end_src
@@ -260,11 +260,11 @@ Disable it for some modes
 #+begin_src emacs-lisp
   (use-package lsp-mode
         :init (setq lsp-inhibit-message t
-  	      lsp-eldoc-render-all nil
-  	      lsp-highlight-symbol-at-point nil
-  	      lsp-keymap-prefix "C-c l")
-		:config
-		(lsp-enable-which-key-integration t))
+  	    lsp-eldoc-render-all nil
+  	    lsp-highlight-symbol-at-point nil
+  	    lsp-keymap-prefix "C-c l")
+  	      :config
+  	      (lsp-enable-which-key-integration t))
 #+end_src
 
 ** [[https://github.com/emacs-lsp/lsp-ui][lsp-ui]]
@@ -272,12 +272,12 @@ Disable it for some modes
   (use-package lsp-ui
         :config
         (setq lsp-ui-sideline-enable t
-		lsp-ui-sideline-show-symbol nil
-		lsp-ui-sideline-show-hover nil
-		lsp-ui-flycheck-enable t
-		lsp-ui-imenu-enable t
-		lsp-ui-sideline-show-code-actions t
-		lsp-ui-sideline-update-mode 'point))
+  	      lsp-ui-sideline-show-symbol nil
+  	      lsp-ui-sideline-show-hover nil
+  	      lsp-ui-flycheck-enable t
+  	      lsp-ui-imenu-enable t
+  	      lsp-ui-sideline-show-code-actions t
+  	      lsp-ui-sideline-update-mode 'point))
 
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 #+end_src
@@ -303,17 +303,17 @@ Syntax checking
 Go
 #+begin_src emacs-lisp
   (use-package go-mode
-		:mode ("\\.go\\'" . go-mode))
+  	      :mode ("\\.go\\'" . go-mode))
 
   (add-hook 'go-mode-hook #'lsp-deferred)
   (add-hook 'go-mode-hook 'flycheck-mode)
 
   (defun lsp-go-install-save-hooks ()
-	(add-hook 'before-save-hook #'lsp-format-buffer t t)
-	(add-hook 'before-save-hook #'lsp-organize-imports t t))
+        (add-hook 'before-save-hook #'lsp-format-buffer t t)
+        (add-hook 'before-save-hook #'lsp-organize-imports t t))
   (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
   (lsp-register-custom-settings
    '(("gopls.completeUnimported" t t)
-	 ("gopls.staticcheck" t t)))
+         ("gopls.staticcheck" t t)))
 #+end_src
