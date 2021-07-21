@@ -54,7 +54,7 @@ git_prompt() {
 }
 
 prompt() {
-    PS1="$(tput setaf 2)\u@\H$(tput sgr0) [ \w $(git_prompt)] \$ "
+	PS1="\u@\H [ \w $(git_prompt)] \$ "
 }
 
 PROMPT_COMMAND=prompt
