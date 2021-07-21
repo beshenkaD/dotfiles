@@ -61,26 +61,30 @@ Some language-specific settings
   (setq-default electric-indent-inhibit t)
 #+end_src
 
-Sometimes it's useful to have guides for indentation
+Sometimes it's useful to have guides for indentation (slow)
 
 #+begin_src emacs-lisp
-  (use-package highlight-indent-guides
-     :config
-     (setq highlight-indent-guides-delay 0)
-     (setq highlight-indent-guides-method 'character)
-     (setq highlight-indent-guides-responsive 'top)
+  ;; (use-package highlight-indent-guides
+  ;;    :config
+  ;;    (setq highlight-indent-guides-delay 0)
+  ;;    (setq highlight-indent-guides-method 'character)
+  ;;    (setq highlight-indent-guides-responsive 'top)
 
-     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-     (add-hook 'org-mode-hook 'highlight-indent-guides-mode))
+  ;;    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  ;;    (add-hook 'org-mode-hook 'highlight-indent-guides-mode))
 #+end_src
 
 ** Scrolling
 #+begin_src emacs-lisp
-  (setq redisplay-dont-pause t
-        scroll-margin 1
-        scroll-step 1
-        scroll-conservatively 10000
-        scroll-preserve-screen-position 1)
+  (setq hscroll-margin 2
+		hscroll-step 1
+		scroll-conservatively 101
+		scroll-margin 0
+		scroll-preserve-screen-position t
+		auto-window-vscroll nil
+		;; mouse
+		mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
+		mouse-wheel-scroll-amount-horizontal 2)
 #+end_src
 
 ** Projectile
@@ -105,17 +109,36 @@ Sometimes it's useful to have guides for indentation
   (setq show-paren-delay 0)    
 #+end_src
 
+** Font
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil
+	:font "Hack"
+	:height 100
+	:weight 'regular)
+  (set-face-attribute 'variable-pitch nil
+	:font "Ubuntu"
+	:height 110
+	:weight 'medium)
+  (set-face-attribute 'fixed-pitch nil
+	:font "Hack"
+	:height 100
+	:weight 'regular)
+#+end_src
+
 ** Modeline
 #+begin_src emacs-lisp
   (use-package doom-modeline
         :init (doom-modeline-mode 1)
-  	  :custom ((doom-modeline-height 12)))
+  	    :custom ((doom-modeline-height 12)))
 #+end_src
 
 ** Themes
 #+begin_src emacs-lisp
   (use-package doom-themes
-  	      :init (load-theme 'doom-one t))
+		:config
+		(setq doom-themes-enable-bold t)
+		(setq doom-themes-enable-italic t)
+		:init (load-theme 'doom-one t))
 
   (use-package all-the-icons)
 #+end_src
@@ -127,9 +150,9 @@ Sometimes it's useful to have guides for indentation
   	(dashboard-setup-startup-hook))
 
   (setq dashboard-items '((recents  . 5)
-  						(bookmarks . 5)
-  						(projects . 5)
-  						(agenda . 5)))
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5)))
 #+end_src
 
 * Keybindings
@@ -215,7 +238,6 @@ Any editor without vim keys is useless shit
 #+begin_src emacs-lisp
   (use-package evil-collection
         :after evil
-        :ensure t
         :config
         (evil-collection-init))
 #+end_src
@@ -272,7 +294,7 @@ Disable it for some modes
   (use-package lsp-ui
         :config
         (setq lsp-ui-sideline-enable t
-  	      lsp-ui-sideline-show-symbol nil
+  	      lsp-ui-sideline-show-symbol t
   	      lsp-ui-sideline-show-hover nil
   	      lsp-ui-flycheck-enable t
   	      lsp-ui-imenu-enable t
