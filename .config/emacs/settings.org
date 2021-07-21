@@ -4,7 +4,7 @@
 * General options
 ** Memory
 #+begin_src emacs-lisp
-  (setq gc-cons-threshold 50000000)
+  (setq gc-cons-threshold (* 2 1000 1000))
   (setq large-file-warning-threshold 100000000)
 #+end_src
 
