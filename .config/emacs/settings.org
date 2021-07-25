@@ -120,15 +120,15 @@ Sometimes it's useful to have guides for indentation (slow)
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
             :font "Hack"
-            :height 100
+            :height 120
             :weight 'normal)
   (set-face-attribute 'variable-pitch nil
             :font "Ubuntu"
-            :height 110
+            :height 130
             :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
             :font "Hack"
-            :height 100
+            :height 120
             :weight 'normal)
 
   (global-prettify-symbols-mode 1)
@@ -143,11 +143,15 @@ Sometimes it's useful to have guides for indentation (slow)
 
 ** Themes
 #+begin_src emacs-lisp
-  (use-package doom-themes
+  ;; (use-package doom-themes
+  ;;   :config
+  ;;   (setq doom-themes-enable-bold t)
+  ;;   (setq doom-themes-enable-italic t))
+    ;; :init (load-theme 'doom-one t))
+
+    (use-package base16-theme
     :config
-    (setq doom-themes-enable-bold t)
-    (setq doom-themes-enable-italic t)
-    :init (load-theme 'doom-one t))
+    (load-theme 'base16-google-light t))
 
   (use-package all-the-icons)
 #+end_src

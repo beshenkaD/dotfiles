@@ -2,9 +2,12 @@
 call plug#begin(stdpath('config') . '/plugins')
 
 Plug 'chrisbra/Colorizer'
+Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-commentary'                    
 
 call plug#end()
+
+colorscheme base16-default-dark
 
 set termguicolors
 set ignorecase

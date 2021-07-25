@@ -10,9 +10,23 @@ super + Return
 super + {d, Tab}
 	rofi -show {drun, window} -show-icons
 
+# Screenshot
+Print
+    flameshot gui
+
+# Audio fn settings
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86Audio{Raise,Lower}Volume
+    pactl -- set-sink-volume 0 {+,-}5%
+
+XF86MonBrightness{Up,Down}
+    brightnessctl s 17{+,-} && polybar-msg hook brightnessctl 1
+
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd && notify-send "bspwm" "sxhkd reloaded"
 
 #
 # bspwm hotkeys
@@ -120,5 +134,3 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-Print
-    flameshot gui
