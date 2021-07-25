@@ -1,3 +1,14 @@
 configuration {
-    theme: "base16-default-dark";
+    font:                           "Hack 14";
+    show-icons:                     true;
+    icon-theme:                     "Papirus";
+    disable-history:                false;
+    fullscreen:                     false;
+    hide-scrollbar:                 true;
+    sidebar-mode:                   true;
+    theme:                          "base16-harmonic-light";
+}
+
+element-icon { 
+    size: 3ch;
 }

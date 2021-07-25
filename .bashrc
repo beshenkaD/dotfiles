@@ -42,7 +42,7 @@ git_prompt() {
     branch_name=${branch_name##refs/heads/}
     branch_name=${branch_name:-HEAD}
 
-    echo -n "-> "
+    echo -n "> "
 
     if [[ $(git status 2> /dev/null | tail -n1) = *"nothing to commit"* ]]; then
       echo -n "$COLOR_GIT_CLEAN$branch_name$COLOR_RESET"

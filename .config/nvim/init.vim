@@ -7,7 +7,7 @@ Plug 'tpope/vim-commentary'
 
 call plug#end()
 
-colorscheme base16-default-dark
+colorscheme base16-harmonic-light
 
 set termguicolors
 set ignorecase

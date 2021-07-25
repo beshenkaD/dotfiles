@@ -10,26 +10,9 @@ start dunst
 start picom -b --experimental-backends
 start sxhkd
 
-battery_warning() {
-	while :; do
-		case `cat /sys/class/power_supply/BAT*/capacity` in
-			[1-15]) 
-				notify-send -u critical "Battery" "Battery low!" ;;
-		esac
-
-		sleep 10
-	done
-}
-
 case `cat /sys/class/dmi/id/chassis_type` in
-	9)
-		start polybar --config=~/.config/polybar/config.ini laptop 
-		battery_warning &
-		;;
-	10)
-		start polybar --config=~/.config/polybar/config.ini laptop 
-		battery_warning &
-		;;
+	9 | 10)
+		start polybar --config=~/.config/polybar/config.ini laptop ;;
 	*)
 		start polybar --config=~/.config/polybar/config.ini pc ;;
 esac
@@ -37,10 +20,9 @@ esac
 start flameshot
 
 killall xautolock
-xautolock -time 5 -corners 000- -locker "i3lock -i '$HOME/.wallpapers/wow_lock.png'" &
+xautolock -time 5 -corners 000- -locker "$HOME/.local/bin/lock" &
 
 feh --bg-scale ~/.wallpapers/wow_forest.png
-#start redshift-gtk
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 

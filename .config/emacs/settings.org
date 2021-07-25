@@ -62,8 +62,9 @@ Some language-specific settings
 
   (add-hook 'go-mode-hook 'enable-tabs) ;; Gofmt prefer tabs
 
-  (add-hook 'c-mode-hook (lambda () (set-tab-width 8)))
-  (add-hook 'c++-mode-hook (lambda () (set-tab-width 8)))
+  ;; TODO: make it work
+  (add-hook 'c-mode-hook (set-tab-width 8))
+  (add-hook 'c++-mode-hook (set-tab-width 8))
 
   (setq-default electric-indent-inhibit t)
 #+end_src
@@ -120,15 +121,15 @@ Sometimes it's useful to have guides for indentation (slow)
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
             :font "Hack"
-            :height 120
+            :height 130
             :weight 'normal)
   (set-face-attribute 'variable-pitch nil
             :font "Ubuntu"
-            :height 130
+            :height 140
             :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
             :font "Hack"
-            :height 120
+            :height 130
             :weight 'normal)
 
   (global-prettify-symbols-mode 1)
@@ -151,7 +152,7 @@ Sometimes it's useful to have guides for indentation (slow)
 
     (use-package base16-theme
     :config
-    (load-theme 'base16-google-light t))
+    (load-theme 'base16-harmonic-light t))
 
   (use-package all-the-icons)
 #+end_src
