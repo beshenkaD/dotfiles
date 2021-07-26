@@ -9,7 +9,7 @@ call plug#end()
 
 colorscheme base16-harmonic-light
 
-" set termguicolors
+set termguicolors
 set ignorecase
 set smartcase
 set lazyredraw
