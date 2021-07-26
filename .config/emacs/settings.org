@@ -72,14 +72,14 @@ Some language-specific settings
 Sometimes it's useful to have guides for indentation (slow)
 
 #+begin_src emacs-lisp
-  ;; (use-package highlight-indent-guides
-  ;;    :config
-  ;;    (setq highlight-indent-guides-delay 0)
-  ;;    (setq highlight-indent-guides-method 'character)
-  ;;    (setq highlight-indent-guides-responsive 'top)
+  (use-package highlight-indent-guides
+     :config
+     (setq highlight-indent-guides-delay 0)
+     (setq highlight-indent-guides-method 'character)
+     (setq highlight-indent-guides-responsive 'top)
 
-  ;;    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  ;;    (add-hook 'org-mode-hook 'highlight-indent-guides-mode))
+     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+     (add-hook 'org-mode-hook 'highlight-indent-guides-mode))
 #+end_src
 
 ** Scrolling
@@ -144,17 +144,46 @@ Sometimes it's useful to have guides for indentation (slow)
 
 ** Themes
 #+begin_src emacs-lisp
-  ;; (use-package doom-themes
-  ;;   :config
-  ;;   (setq doom-themes-enable-bold t)
-  ;;   (setq doom-themes-enable-italic t))
-    ;; :init (load-theme 'doom-one t))
-
-    (use-package base16-theme
+  (use-package base16-theme
     :config
     (load-theme 'base16-harmonic-light t))
 
   (use-package all-the-icons)
+#+end_src
+
+** Tabs
+#+begin_src emacs-lisp
+  (use-package centaur-tabs
+  :config
+  (setq centaur-tabs-style "chamfer"
+        centaur-tabs-height 32
+        centaur-tabs-set-icons t
+        centaur-tabs-set-modified-marker t
+        centaur-tabs-show-navigation-buttons t
+        centaur-tabs-down-tab-text " ☰ "
+        centaur-tabs-backward-tab-text " ◀ "
+        centaur-tabs-forward-tab-text " ▶ "
+        centaur-tabs-close-button "✕"
+        centaur-tabs-modified-marker "⬤"
+        centaur-tabs-set-bar 'under
+        x-underline-at-descent-line t)
+  (centaur-tabs-headline-match)
+  (centaur-tabs-mode t)
+  :hook
+  (dashboard-mode . centaur-tabs-local-mode)
+  (term-mode . centaur-tabs-local-mode)
+  (calendar-mode . centaur-tabs-local-mode)
+  (org-agenda-mode . centaur-tabs-local-mode)
+  (helpful-mode . centaur-tabs-local-mode)
+  :bind
+  ("C-<prior>" . centaur-tabs-backward)
+  ("C-<next>" . centaur-tabs-forward)
+  ("C-c t s" . centaur-tabs-counsel-switch-group)
+  ("C-c t p" . centaur-tabs-group-by-projectile-project)
+  ("C-c t g" . centaur-tabs-group-buffer-groups)
+  (:map evil-normal-state-map
+        ("g t" . centaur-tabs-forward)
+        ("g T" . centaur-tabs-backward)))
 #+end_src
 
 ** Dashboard
@@ -189,6 +218,11 @@ Any editor without vim keys is useless shit
     :config
     (define-key evil-normal-state-map (kbd "C-p") 'dired-jump) ;; Like FZF in vim, but better
     (evil-mode 1))
+
+  ;; :q should kill the current buffer rather than quitting emacs entirely
+  (evil-ex-define-cmd "q" 'kill-buffer-and-window)
+  ;; Need to type out :quit to close emacs
+  (evil-ex-define-cmd "quit" 'evil-quit)
 #+end_src
 
 ** [[https://github.com/emacs-evil/evil-collection][evil-collection]]
@@ -203,11 +237,10 @@ Any editor without vim keys is useless shit
 #+begin_src emacs-lisp
   (use-package evil-org
     :after org
-    :after evil
+    :hook ((org-mode . evil-org-mode)
+           (org-agenda-mode . evil-org-mode)
+           (evil-org-mode . (lambda () (evil-org-set-key-theme '(navigation todo insert textobjects additional)))))
     :config
-    (add-hook 'org-mode-hook 'evil-org-mode)
-    (add-hook 'evil-org-mode-hook
-        (lambda () (evil-org-set-key-theme)))
     (require 'evil-org-agenda)
     (evil-org-agenda-set-keys))
 #+end_src
@@ -218,6 +251,15 @@ Any editor without vim keys is useless shit
     :after evil
     :config
     (evil-commentary-mode))
+#+end_src
+
+** evil-leader
+#+begin_src emacs-lisp
+  (use-package evil-leader
+    :init (global-evil-leader-mode)
+    :config
+    (progn
+      (evil-leader/set-key "ag" 'org-agenda)))
 #+end_src
 
 ** Relative line numbers
@@ -231,7 +273,7 @@ Disable it for some modes
 #+begin_src emacs-lisp
   (defun disable-relative-line-numbers () (setq display-line-numbers-type t))
 
-  (add-hook 'org-mode-hook 'disable-relative-line-numbers)
+  ;;(add-hook 'org-mode-hook 'disable-relative-line-numbers)
 #+end_src
 
 * Keybindings

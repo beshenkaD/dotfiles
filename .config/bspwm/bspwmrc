@@ -18,9 +18,11 @@ case `cat /sys/class/dmi/id/chassis_type` in
 esac
 
 start flameshot
+start xsettingsd
+start redshift
 
 killall xautolock
-xautolock -time 5 -corners 000- -locker "$HOME/.local/bin/lock" &
+xautolock -time 5 -corners ---- -locker "$HOME/.local/bin/lock" &
 
 feh --bg-scale ~/.wallpapers/wow_forest.png
 
