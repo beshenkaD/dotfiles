@@ -30,10 +30,10 @@ fi
 
 # Git promt
 
-COLOR_GIT_CLEAN='\[\033[1;30m\]'
-COLOR_GIT_MODIFIED='\[\033[0;33m\]'
-COLOR_GIT_STAGED='\[\033[0;36m\]'
-COLOR_RESET='\[\033[0m\]'
+COLOR_GIT_CLEAN="\[$(tput setaf 7)\]"
+COLOR_GIT_MODIFIED="\[$(tput setaf 3)\]"
+COLOR_GIT_STAGED="\[$(tput setaf 5)\]"
+COLOR_RESET="\[$(tput sgr0)\]"
 
 git_prompt() {
   export LC_ALL=C
@@ -61,7 +61,7 @@ prompt() {
 	BLU="\[$(tput setaf 4)\]"
 	RES="\[$(tput sgr0)\]"
 
-	PS1="$GRN\u$RES@$BLU\H$RES [ \w $(git_prompt)] \$ "
+	PS1="$GRN\u$RES@$BLU\H$RES [ \W $(git_prompt)] \$ "
 }
 
 PROMPT_COMMAND=prompt

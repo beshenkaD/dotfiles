@@ -1,4 +1,4 @@
-# Created 2021-07-22 Чт 01:19
+# Created 2021-07-28 Wed 14:53
 #+TITLE: emacs config
 
 * General options
@@ -13,8 +13,8 @@
   (require 'package)
   (setq package-enable-at-startup nil)
   (setq package-archives '(("org" . "http://orgmode.org/elpa/")
-                           ("melpa" . "http://melpa.org/packages/")
-                           ("gnu" . "https://elpa.gnu.org/packages/")))
+  			 ("melpa" . "http://melpa.org/packages/")
+  			 ("gnu" . "https://elpa.gnu.org/packages/")))
   (package-initialize)
 
   (unless (package-installed-p 'use-package)
@@ -63,8 +63,9 @@ Some language-specific settings
   (add-hook 'go-mode-hook 'enable-tabs) ;; Gofmt prefer tabs
 
   ;; TODO: make it work
-  (add-hook 'c-mode-hook (set-tab-width 8))
-  (add-hook 'c++-mode-hook (set-tab-width 8))
+  ;; (add-hook 'c-mode-hook (set-tab-width 8))
+  ;; (add-hook 'c++-mode-hook (set-tab-width 8))
+  (setq-default c-basic-offset 4)
 
   (setq-default electric-indent-inhibit t)
 #+end_src
@@ -101,7 +102,7 @@ Sometimes it's useful to have guides for indentation (slow)
     :init
     (projectile-mode +1)
     :bind (:map projectile-mode-map
-          ("C-c p" . projectile-command-map)))
+  	("C-c p" . projectile-command-map)))
 #+end_src
 
 * Appearance
@@ -120,17 +121,17 @@ Sometimes it's useful to have guides for indentation (slow)
 ** Font
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-            :font "Hack"
-            :height 130
-            :weight 'normal)
+  	  :font "Hack"
+  	  :height 130
+  	  :weight 'normal)
   (set-face-attribute 'variable-pitch nil
-            :font "Ubuntu"
-            :height 140
-            :weight 'medium)
+  	  :font "Ubuntu"
+  	  :height 140
+  	  :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-            :font "Hack"
-            :height 130
-            :weight 'normal)
+  	  :font "Hack"
+  	  :height 130
+  	  :weight 'normal)
 
   (global-prettify-symbols-mode 1)
 #+end_src
@@ -193,9 +194,9 @@ Sometimes it's useful to have guides for indentation (slow)
     (dashboard-setup-startup-hook))
 
   (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5)))
+  			(bookmarks . 5)
+  			(projects . 5)
+  			(agenda . 5)))
 #+end_src
 
 * Evil
@@ -238,8 +239,8 @@ Any editor without vim keys is useless shit
   (use-package evil-org
     :after org
     :hook ((org-mode . evil-org-mode)
-           (org-agenda-mode . evil-org-mode)
-           (evil-org-mode . (lambda () (evil-org-set-key-theme '(navigation todo insert textobjects additional)))))
+  	 (org-agenda-mode . evil-org-mode)
+  	 (evil-org-mode . (lambda () (evil-org-set-key-theme '(navigation todo insert textobjects additional)))))
     :config
     (require 'evil-org-agenda)
     (evil-org-agenda-set-keys))
@@ -339,10 +340,10 @@ A better fuzzy matching algorithm for ivy
 #+begin_src emacs-lisp
   (use-package lsp-mode
     :init (setq lsp-inhibit-message t
-          lsp-eldoc-render-all nil
-          lsp-enable-snippet t
-          lsp-highlight-symbol-at-point nil
-          lsp-keymap-prefix "C-c l")
+  	lsp-eldoc-render-all nil
+  	lsp-enable-snippet t
+  	lsp-highlight-symbol-at-point nil
+  	lsp-keymap-prefix "C-c l")
     :config
     (lsp-enable-which-key-integration t))
 #+end_src
@@ -386,27 +387,79 @@ Syntax checking
     (use-package yasnippet-snippets)
     (yas-global-mode t))
 #+end_src
+** Magit
+Git client inside emacs!
+#+begin_src emacs-lisp
+  (use-package magit
+    :commands (magit-status magit-get-current-branch)
+    :custom
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+  (evil-leader/set-key
+    "gs"  'magit-status
+    "gd"  'magit-diff-unstaged
+    "gc"  'magit-branch-or-checkout
+    "glc" 'magit-log-current
+    "glf" 'magit-log-buffer-file
+    "gb"  'magit-branch
+    "gP"  'magit-push-current
+    "gp"  'magit-pull-branch
+    "gf"  'magit-fetch
+    "gF"  'magit-fetch-all
+    "gr"  'magit-rebase)
+#+end_src
 ** Languages
-***  Go
-    #+begin_src emacs-lisp
-      (use-package go-mode
-        :mode ("\\.go\\'" . go-mode))
+*** Go
+#+begin_src emacs-lisp
+  (use-package go-mode
+    :mode ("\\.go\\'" . go-mode))
 
-      (add-hook 'go-mode-hook #'lsp-deferred)
-      (add-hook 'go-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook #'lsp-deferred)
+  (add-hook 'go-mode-hook 'flycheck-mode)
 
-      (defun lsp-go-install-save-hooks ()
-        (add-hook 'before-save-hook #'lsp-format-buffer t t)
-        (add-hook 'before-save-hook #'lsp-organize-imports t t))
-      (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
-      (lsp-register-custom-settings
-       '(("gopls.completeUnimported" t t)
-         ("gopls.staticcheck" t t)))
-    #+end_src
+  (lsp-register-custom-settings
+   '(("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t)))
+#+end_src
+*** C/C++
+#+begin_src emacs-lisp
+  (use-package ccls
+    :hook ((c-mode c++-mode objc-mode cuda-mode) .
+           (lambda () (require 'ccls) (lsp))))
+#+end_src
+*** D
+#+begin_src emacs-lisp
+  (use-package d-mode)
+
+  (add-hook 'd-mode-hook #'lsp-deferred)
+  (add-hook 'd-mode-hook 'flycheck-mode)
+#+end_src
 
 * Org mode
 ** [[https://github.com/integral-dw/org-superstar-mode][org-superstar]]
 #+begin_src emacs-lisp
   (use-package org-superstar :after org :hook (org-mode . org-superstar-mode))
+#+end_src
+* LaTeX
+** Auctex
+   https://bbs.archlinux.org/viewtopic.php?id=189071
+#+begin_src emacs-lisp
+  (use-package tex
+    :ensure auctex
+    :mode ("\\.tex\\'" . LaTeX-mode)
+    :config
+    (setq TeX-view-program-list
+          '(("zathura"
+             ("zathura" (mode-io-correlate "-sync.sh")
+              " "
+              (mode-io-correlate "%n:1:%b ")
+              "%o"))))
+    (setq TeX-view-program-selection '((output-pdf "zathura")))
+    (setq TeX-PDF-mode t)
+    (TeX-source-correlate-mode))
 #+end_src

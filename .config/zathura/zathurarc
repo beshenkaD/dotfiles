@@ -1,34 +1,35 @@
-set default-bg                  "#2E3440"
-set default-fg                  "#3B4252"
+# Base16 Harmonic16 Light
+# Author: Jannik Siebert (https://github.com/janniks)
 
-set statusbar-fg                "#D8DEE9"
-set statusbar-bg                "#434C5E"
+set default-bg                  "#f7f9fb"
+set default-fg                  "#e5ebf1"
 
-set inputbar-bg                 "#2E3440"
-set inputbar-fg                 "#8FBCBB"
+set statusbar-fg                "#627e99"
+set statusbar-bg                "#cbd6e2"
 
-set notification-bg             "#2E3440"
-set notification-fg             "#8FBCBB"
+set inputbar-bg                 "#f7f9fb"
+set inputbar-fg                 "#0b1c2c"
 
-set notification-error-bg       "#2E3440"
-set notification-error-fg       "#BF616A"
+set notification-bg             "#f7f9fb"
+set notification-fg             "#0b1c2c"
 
-set notification-warning-bg     "#2E3440"
-set notification-warning-fg     "#BF616A"
+set notification-error-bg       "#f7f9fb"
+set notification-error-fg       "#bf8b56"
 
-set highlight-color             "#EBCB8B"
-set highlight-active-color      "#81A1C1"
+set notification-warning-bg     "#f7f9fb"
+set notification-warning-fg     "#bf8b56"
 
-set completion-bg               "#3B4252"
-set completion-fg               "#81A1C1"
+set highlight-color             "#8bbf56"
+set highlight-active-color      "#8b56bf"
 
-set completion-highlight-fg     "#8FBCBB"
-set completion-highlight-bg     "#81A1C1"
+set completion-bg               "#e5ebf1"
+set completion-fg               "#8b56bf"
 
-set recolor-lightcolor          "#2E3440"
-set recolor-darkcolor           "#ECEFF4"
+set completion-highlight-fg     "#0b1c2c"
+set completion-highlight-bg     "#8b56bf"
 
-set recolor                     true
+set recolor-lightcolor          "#f7f9fb"
+set recolor-darkcolor           "#223b54"
 
-set selection-clipboard clipboard
-set smooth-scroll "true"
+set recolor                     "false"
+set recolor-keephue             "false"
