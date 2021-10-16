@@ -24,7 +24,7 @@ My dotfiles.
 # TODO
 - [ ] Organize dotfiles and scripts better
 - [ ] Add powermenu to rofi
-- [ ] Fix rofi colors
+- [x] Fix rofi colors
 - [ ] Make day/night colorscheme switch
 - [ ] Create unified config for vim and neovim
 - [x] Replace alacritty with something else
