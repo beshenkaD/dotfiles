@@ -1,4 +1,3 @@
-"============= Plugins =============
 call plug#begin(stdpath('config') . '/plugins')
 
 Plug 'chrisbra/Colorizer'
@@ -9,7 +8,10 @@ call plug#end()
 
 colorscheme base16-harmonic-light
 
-set termguicolors
+if (has("termguicolors"))
+    set termguicolors
+endif
+
 set ignorecase
 set smartcase
 set lazyredraw
