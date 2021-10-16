@@ -37,7 +37,7 @@ start redshift
 killall xautolock
 xautolock -time 5 -corners ---- -locker "$HOME/.local/bin/lock" &
 
-feh --bg-scale ~/.wallpapers/wow_forest.png
+# feh --bg-scale ~/.wallpapers/wow_forest.png
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
@@ -58,5 +58,3 @@ bspc config single_monocle       true
 # control
 bspc config focus_follows_pointer   true
 bspc config pointer_motion_interval 4
-
-bspc rule -a Qmmp border=off
