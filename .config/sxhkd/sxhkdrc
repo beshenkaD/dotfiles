@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	xterm
 
 # program launcher
 super + {d, Tab}

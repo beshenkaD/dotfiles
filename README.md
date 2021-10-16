@@ -13,7 +13,7 @@ My dotfiles.
 * light-locker - screen locker
 * Dunst   - notification daemon
 * Bspwm + sxhkd   - window manager
-* Alacritty - terminal emulator
+* Xterm - terminal emulator
 * Bash - nuff said
 * Emacs - operating system
 * Neovim - text editor
@@ -27,7 +27,7 @@ My dotfiles.
 - [ ] Fix rofi colors
 - [ ] Make day/night colorscheme switch
 - [ ] Create unified config for vim and neovim
-- [ ] Replace alacritty with something else
+- [x] Replace alacritty with something else
 - [x] Replace i3lock with light-locker, and 'startx' with lightdm
 - [ ] Fix --show option for @(root) dotfiles
 - [ ] Add encryption support to dot.py
