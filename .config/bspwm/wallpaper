@@ -1,0 +1,3 @@
+#!/bin/sh
+
+feh --bg-fill /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg

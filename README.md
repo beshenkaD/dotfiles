@@ -9,10 +9,11 @@ My dotfiles.
 
 ## Environment
 * Polybar - nuff said
+* DM - lightdm with slick-greeter
+* light-locker - screen locker
 * Dunst   - notification daemon
 * Bspwm + sxhkd   - window manager
 * Alacritty - terminal emulator
-* i3lock - screen locker
 * Bash - nuff said
 * Emacs - operating system
 * Neovim - text editor
@@ -27,7 +28,8 @@ My dotfiles.
 - [ ] Make day/night colorscheme switch
 - [ ] Create unified config for vim and neovim
 - [ ] Replace alacritty with something else
-- [ ] Replace i3lock with light-locker, and 'startx' with lightdm
+- [x] Replace i3lock with light-locker, and 'startx' with lightdm
+- [ ] Fix --show option for @(root) dotfiles
 - [ ] Add encryption support to dot.py
 - [ ] Add screenshots
 - [ ] Take wallpapers from internet

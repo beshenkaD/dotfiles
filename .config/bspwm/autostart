@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Battery check
+bat() {
+	while :; do
+		B=$(acpi -b | sed -ne 's/Battery 0.* \([0-9]*\)%.*/\1/p')
+		if [ $B -le 15 ]; then
+			notify-send "Battery power is lower than 15%!" -u critical
+		fi
+
+		sleep 30
+	done
+}
+
+bat &
+
+# Autostart
+start() {
+    killall -q $1
+    while pgrep -x $1 >/dev/null; do sleep 1; done
+    $@ &
+}
+
+start 'dunst'
+start 'picom -b --experimental-backends'
+start 'sxhkd'
+start 'xsettingsd'
+start 'redshift-gtk'
+start 'nm-applet'
+start 'light-locker'
+
+case `cat /sys/class/dmi/id/chassis_type` in
+	9 | 10)
+		start 'polybar --config=~/.config/polybar/config.ini laptop' ;;
+	*)
+		start 'polybar --config=~/.config/polybar/config.ini pc' ;;
+esac
+

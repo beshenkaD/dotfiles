@@ -49,12 +49,17 @@ def backup(path):
         os.mkdir('backup')
 
     try:
-        os.replace(path, abspath('./backup') + '/' + basename(path))
+        # os.replace(path, abspath('./backup') + '/' + basename(path))
+        shutil.copy(path, abspath('./backup') + '/' + basename(path))
+        os.unlink(path)
     except OSError as e:
         cprint(colors.FAIL, f'{e}')
 
 
 def get_dest(src):
+    if src[0] == '@':
+        return '/' + src[1:], True
+
     home = os.getenv('HOME')
     if home is None:
         cprint(colors.FAIL, "$HOME is unset. I can't find your home directory!")
@@ -62,10 +67,10 @@ def get_dest(src):
 
     new = home + '/' + src
 
-    return abspath(new)
+    return abspath(new), False
 
 
-def install(src, dest):
+def install(src, dest, isRoot):
     cprint(colors.GREEN, f'installing {src} to {dest}')
 
     if (isdir(dest) or isfile(dest)) and (not islink(dest)):
@@ -80,7 +85,10 @@ def install(src, dest):
         return
 
     try:
-        os.symlink(abspath(src), dest)
+        if isRoot:
+            shutil.copy(abspath(src), dest)
+        else:
+            os.symlink(abspath(src), dest)
     except OSError as e:
         cprint(colors.FAIL, f'{e}')
 
@@ -119,7 +127,8 @@ def show():
                     files.remove(f)
 
             for f in files:
-                add(f, get_dest(f))
+                dest, _ = get_dest(f)
+                add(f, dest)
 
         if len(root.split('/')) <= 2 and root != '.':
             def sr(s, fd):
@@ -129,10 +138,12 @@ def show():
 
             for f in files:
                 src = sr(root, f)
-                add(src, get_dest(src))
+                dest, _ = get_dest(src)
+                add(src, dest)
             for d in dir:
                 src = sr(root, d)
-                add(src, get_dest(src))
+                dest, _ = get_dest(src)
+                add(src, dest)
 
     for dot in i:
         cprint(colors.GREEN, f'[x] {dot}')
@@ -174,14 +185,16 @@ if args.install and args.remove:
 
 elif args.install:
     for dot in args.install:
-        install(dot, get_dest(dot))
+        dest, isRoot = get_dest(dot)
+        install(dot, dest, isRoot)
 
         if args.hooks:
             run_hooks(dot)
 
 elif args.remove:
     for dot in args.remove:
-        remove(get_dest(dot))
+        dest, isRoot = get_dest(dot)
+        remove(dest)
 
 elif args.show:
     show()

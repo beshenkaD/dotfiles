@@ -9,3 +9,6 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
 	export PATH=$PATH:$HOME/.local/bin
 fi
+
+xset s blank
+xset s 300 600
