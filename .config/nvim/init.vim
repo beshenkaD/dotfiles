@@ -12,6 +12,12 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+if empty($DISPLAY)
+    set notermguicolors
+    colorscheme default
+    set background=dark
+endif
+
 set ignorecase
 set smartcase
 set lazyredraw
