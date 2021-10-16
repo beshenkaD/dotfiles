@@ -55,3 +55,8 @@
 
 xterm*faceName: Hack
 xterm*faceSize: 13
+xterm*selectToClipboard: true
+
+XTerm*VT100.Translations: #override \
+      Shift Ctrl<Key>V: insert-selection(CLIPBOARD) \n\
+      Shift Ctrl<Key>C: copy-selection(CLIPBOARD)
