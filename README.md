@@ -23,7 +23,7 @@ My dotfiles.
 
 # TODO
 - [ ] Organize dotfiles and scripts better
-- [ ] Add powermenu to rofi
+- [x] Add powermenu to rofi
 - [x] Fix rofi colors
 - [ ] Make day/night colorscheme switch
 - [ ] Create unified config for vim and neovim

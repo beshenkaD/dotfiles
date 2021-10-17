@@ -42,7 +42,6 @@ window {
     border:           1;
     padding:          5;
     width: 30%;
-    height: 50%;
 }
 
 mainbox {
@@ -65,7 +64,7 @@ listview {
     border:           2px dash 0px 0px ;
     border-color:     @separatorcolor;
     spacing:          2px ;
-    scrollbar:        true;
+    scrollbar:        false;
     padding:          2px 0px 0px ;
 }
 
